@@ -1,0 +1,42 @@
+<div class="modal-content">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button>
+		<h4 class="modal-title registry-title" id="wishlistList">Invite Your Friends with URL</h4>
+	</div>
+	<div class="modal-body text-center">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- <input type="text" class="form-control" ng-model="url" ng-disabled = "true" /> -->
+
+				<span>{{url}}</span>
+			</div>
+		</div> 
+		<br>
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<ul class="social-network social-circle">
+					<li>
+					</li>
+					<li><a href="https://facebook.com/sharer.php?" class="icoFacebook" title="Facebook"  social-facebook><i class="fa fa-facebook"></i><span class="hide">Share on facebook</span></a></li>
+					<li><a href=""  custom-url="{{url}}" social-twitter class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i><span class="hide">Share on twitter</span></a></li>
+					<li><a href="" custom-url="{{url}}" social-gplus class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i><span class="hide">Share on google plus</span></a></li>
+
+				</ul>       
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+
+<div class="row" ng-show="wishlists.length == 0">
+
+	<div class="bmd-list-group-col col-md-11" >
+		<p class="list-group-item-heading list-title" style="
+		color: #e75d15;">Sorry you have no Registries</p>
+
+	</div> 
+</div>
+
+</div>
+</div>

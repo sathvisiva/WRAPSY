@@ -1,0 +1,26 @@
+<!-- <navbar></navbar> -->
+<div ng-class="registry.theme" class="registryPage" >
+	<div class="container">
+		<a  class="btn btn-md btn-tertiary pull-left cursorpointer" ng-if="editable" ng-click="selectTheme()">
+			Edit Theme
+		</a> 
+		<div class="page">
+
+
+			<div class="row registry-menu">
+				<ul class="menu" >
+					<li><a class="cursorpointer menutitle" ng-click="registryPage('home')" ng-class="registry.theme">Home</a></li>
+					<li><a class="cursorpointer menutitle" ng-click="registryPage('registrypdts')" ng-class="registry.theme">Wishlist</a></li>
+					<li><a class="cursorpointer menutitle" ng-click="registryPage('guestbook')" ng-class="registry.theme">Guest Book</a></li>
+					<li><a class="cursorpointer menutitle" ng-click="registryPage('rsvp')" ng-class="registry.theme">RSVP</a></li>
+					<li><a class="cursorpointer menutitle" ng-click="registryPage('accomodation')" ng-class="registry.theme">Accomodation</a></li>
+					<li><a class="cursorpointer menutitle" ng-click="inviteFriends()" ng-class="registry.theme">Invite</a></li>
+				</ul>
+			</div>
+			<div class="registry-container">
+				<div ui-view></div> 
+			</div>
+		</div>
+	</div>
+</div>
+

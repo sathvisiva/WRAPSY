@@ -1,0 +1,13 @@
+
+
+
+ #form1 {
+  & .ng-touched.ng-valid,
+  .ng-dirty.ng-valid{
+    background: transparent; 
+  }
+  & .ng-touched.ng-invalid,
+  .ng-dirty.ng-invalid {
+    background: darksalmon ; 
+  }
+}

@@ -1,0 +1,67 @@
+
+
+
+<div class="navbar  navbar-custom" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsebtn" data-toggle="collapse" ng-click="openNav()">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <span class="hidden-xs hidden-sm"><a ui-sref="home"><img ng-src="/assets/img/logo/logo.png" class="logo"></img></a></span>
+    <div class="visible-xs visible-sm hidden-md hidden-lg">
+      <span ><a ui-sref="home"><img ng-src="/assets/img/logo/logo.png" alt="wrapsy" class="logo"></a></span>
+      <div class="header-contact-info mobile-header">
+        <ul  >
+          <li>
+            <a ng-click="login($event)" style="cursor: pointer !important;">
+             <i class="fa fa-user"></i></a>
+             <a ui-sref="cart-details"><div class="header-contact-info"><span class="fa fa-shopping-cart"></span></div></a>
+             <!-- <a class="cursorpointer" ng-click="toggleSearch()"><span class="fa fa-search"></span></a> -->
+           </li>
+         </ul>
+       </div> 
+       <br>
+
+       <div class="row text-center">
+         <div class="col-md-9  search" >
+           <form id="search-form" action="search">
+            <div class="input-group">
+              <input type="search" name="term" required class="form-control" placeholder="Search Products" aria-label="Search for...">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default" type="button"></button>
+              </span>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="collapse navbar-collapse">
+   <ul class="nav navbar-nav">
+     <li ng-repeat="category in tree | orderBy:'name'">
+       <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{category.name }}</a>
+       <ul class="dropdown-menu multi-level" >
+         <li ng-class="{'dropdown-submenu': subtree.subtree.length > 0}" ng-repeat="subtree in category.subtree | orderBy:'name'">
+           <a ng-class="{'dropdown-toggle': subtree.subtree.length > 0}" data-toggle="dropdown" ui-sref="products({slug: subtree.slug, category : subtree.name })">{{subtree.name}}</a>
+           <ul class="dropdown-menu">
+            <li ng-repeat="secondsubtree in subtree.subtree | orderBy:'name'">
+              <a ui-sref="products({slug: secondsubtree.slug, category : secondsubtree.name })">{{secondsubtree.name}}</a></li>
+
+            </ul>
+          </li> 
+        </ul>
+      </li>
+      <li>
+        <a href="/gift-card" >Gift Cards</a>
+      </li>
+
+    </ul>
+
+  </div>
+
+
+</div>

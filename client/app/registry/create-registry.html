@@ -1,0 +1,216 @@
+<navbar></navbar>
+<div class="event-details">
+  <div class="row">
+
+   <!--  <md-content  layout="row" layout-align="center" layout-padding="layout-padding" ng-cloak="ng-cloak" class="event-details"> -->
+
+   <md-card  class="col-md-6 registry-card">
+     <form name="form1" ng-submit="save(form1)">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h3>Create Your Registry</h3>
+          <h5>You are one step away from getting lots of presents</h5>
+        </div>
+      </div>
+
+      <div class="modal-body" style="padding: 5px;">
+        <div class="row">
+
+          <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+           <label>Registry Title</label>
+           <input type="text"  class="form-control" placeholder="Registry Title" id="title" name="title"
+           ng-model="registry.title" required autofocus/>
+           <div class="msg-block" ng-if="form1.title.$touched" ng-messages="form1.title.$error" style="color:maroon; ">
+             <div ng-message="required">Registry Title is required</div>
+           </div>
+         </div>
+       </div>
+       <div class="row">
+         <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+           <label>First Name</label>
+           <input type="text"  class="form-control" placeholder="First Name" id="firstName" name="youfirstName" ng-model="registry.youfirstName" required>
+           <div class="msg-block" ng-if="form1.youfirstName.$touched" ng-messages="form1.youfirstName.$error" style="color:maroon; ">
+             <div ng-message="required">First Name is required</div>
+           </div>
+         </div>
+         <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+           <label>Last Name</label>
+           <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="yousecond" ng-model="registry.yousecondName"
+           required>
+           <div class="msg-block" ng-if="form1.yousecond.$touched" ng-messages="form1.yousecond.$error" style="color:maroon; ">
+             <div ng-message="required">Last Name is required</div>
+           </div>
+         </div>
+       </div>
+       <div class="row" ng-if="registry.type == 'wedding'">
+         <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+           <label>Partner's First Name</label>
+           <input type="text"  class="form-control" placeholder="First Name" id="firstName" ng-model="registry.firstName" name="firstName" required>
+           <div class="msg-block" ng-if="form1.firstName.$touched" ng-messages="form1.firstName.$error" style="color:maroon; ">
+             <div ng-message="required">Partner's First Name is required</div>
+           </div>
+         </div>
+         <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+           <label>Partner's Last Name</label>
+           <input type="text" class="form-control" placeholder="Last Name" name="second" ng-model="registry.secondName" id="LastName" required>
+           <div class="msg-block" ng-if="form1.second.$touched" ng-messages="form1.second.$error" style="color:maroon; ">
+             <div ng-message="required">Partner's Last Name is required</div>
+           </div>
+         </div>
+       </div>
+       <div class="row">
+         <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+           <label>Event Date</label>
+           <input type="text" class="form-control" placeholder="Event Date" id="bigday" name="bigday" ng-focus="open1()" uib-datepicker-popup="dd-MMM-yyyy" ng-model="registry.date" is-open="popup1.opened" datepicker-options="options"   ng-required="true" close-text="Close"  ng-click="open1()" required/>
+           <div class="msg-block" ng-if="form1.bigday.$touched" ng-messages="form1.bigday.$error" style="color:maroon; ">
+             <div ng-message="required">Event Date is required</div>
+           </div>
+         </div>
+         <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+          <label>Event location</label>
+          <input type="text"  class="form-control" placeholder="Chennai" id="location" name="location"
+          ng-model="registry.location" required>
+          <div class="msg-block" ng-if="form1.location.$touched" ng-messages="form1.location.$error" style="color:maroon; ">
+          <div ng-message="required">Please let us know your event location</div>
+         </div>
+       </div>
+     </div>
+     <div class="row text-center">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-md-offset-3">
+        <input type="submit" class="btn btn-primary btn-block" value="Let's Get Started">
+      </div>
+    </div>
+
+
+
+    <!--   <div class = "register-section">
+        <form class="form" name="form" ng-submit="saveeventdetails(form)" novalidate>
+         
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group ">
+                <label>Registry Title</label>
+                <div class="row grid-container grid-spacing-half">
+                  <div class="col-xs-9 col-sm-9 col-md-9 grid-item top-row bottom-row">
+                    <input type="text"  class="form-control" placeholder="Registry Title" id="firstName" name="title"
+                    ng-model="registry.title" required>
+                    <p ng-show="(form.title.$invalid && !form.title.$pristine) || (form.title.$invalid && form.title.$touched) || (form.title.$invalid && eventformsubmitted )" class="help-block">Registry Title is required.</p>                                
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group  registry-fields">
+            <label>You Are</label>
+            <div class="row grid-container grid-spacing-half">
+              <div class="col-xs-12 col-sm-5 col-md-4 grid-item top-row bottom-row">
+                <input type="text"  class="form-control" placeholder="First Name" id="firstName" name="youfirstName" ng-model="registry.youfirstName" required>
+                <p ng-show="(form.youfirstName.$invalid && !form.youfirstName.$pristine) || (form.youfirstName.$invalid && form.youfirstName.$touched) || (form.youfirstName.$invalid && eventformsubmitted) " class="help-block">First Name is required.</p>
+              </div>
+              <div class="hidden-xs col-sm-1 text-center">
+
+              </div>
+              <div class="col-xs-12 col-sm-5 col-md-4 grid-item top-row bottom-row">
+                <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="yousecond" ng-model="registry.yousecondName"
+                required>
+                <p ng-show="(form.yousecond.$invalid && !form.yousecond.$pristine) || (form.yousecond.$invalid && form.yousecond.$touched) || (form.yousecond.$invalid && eventformsubmitted) " class="help-block">Second Name is required.</p>
+
+
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group  registry-fields" ng-if="enableSecondName">
+            <label>Your Spouse-To-Be is:</label>
+            <div class="row grid-container grid-spacing-half">
+              <div class="col-xs-12 col-sm-5 col-md-4 grid-item top-row bottom-row">
+                <input type="text"  class="form-control" placeholder="First Name" id="firstName" ng-model="registry.firstName" name="firstName" required>
+                <p ng-show="(form.firstName.$invalid && !form.firstName.$pristine) || (form.firstName.$invalid && form.firstName.$touched) || (form.firstName.$invalid && eventformsubmitted) " class="help-block">First Name is required.</p>
+              </div>
+              <div class="hidden-xs col-sm-1 text-center">
+              </div>
+              <div class="col-xs-12 col-sm-5 col-md-4 grid-item top-row bottom-row">
+                <input type="text" class="form-control" placeholder="Last Name" name="second" ng-model="registry.secondName" id="LastName" required>
+                <p ng-show="(form.second.$invalid && !form.second.$pristine) || (form.second.$invalid && form.second.$touched) || (form.second.$invalid && eventformsubmitted) " class="help-block">Second Name is required.</p>
+              </div>
+            </div>
+          </div>
+   
+
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group  registry-fields">
+              <label>Your Big Day Is</label>
+              <div class="row grid-container grid-spacing-half">
+                <div class="col-xs-9 col-sm-9 col-md-9 grid-item top-row bottom-row">
+                  <input type="text" class="form-control" placeholder="Event Date" id="bigday" name="bigday" ng-focus="open1()" uib-datepicker-popup="dd-MMM-yyyy" ng-model="registry.date" is-open="popup1.opened" datepicker-options="options"   ng-required="true" close-text="Close"  ng-click="open1()" required/> 
+                  <p ng-show="(form.bigday.$invalid && !form.bigday.$pristine) || (form.bigday.$invalid && form.bigday.$touched) || (form.bigday.$invalid && eventformsubmitted) " class="help-block">Event Date is required.</p>                             
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group  registry-fields">
+              <label>Location</label>
+              <div class="row grid-container grid-spacing-half">
+                <div class="col-xs-8 col-sm-8 col-md-8 grid-item top-row bottom-row">
+                  <input type="text"  class="form-control" placeholder="Chennai" id="location" name="location"
+                  ng-model="registry.location" required>
+                  <p ng-show="(form.location.$invalid && !form.location.$pristine) || (form.location.$invalid && form.location.$touched) || (form.location.$invalid && eventformsubmitted) " class="help-block">Location is required.</p>                                
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-xs-12 col-sm-5 col-md-2 pull-right">
+            <input type="submit" class="btn btn-primary btn-lg " value="Continue">
+          </div>
+        </div>
+      </form>
+    </div> -->
+
+
+
+
+  </md-card>
+  <!-- </md-content> -->
+  <!-- <div class="container">
+  <div class="row"> -->
+<!--       <div class="col-md-12 hidden-xs hidden-sm" >
+        <div id="form-container">                  
+          <div class="page-header text-center">
+            <div id="status-buttons" class="text-center">
+              <div class="col-md-3 col-sm-2">
+                <md-button class="md-fab md-primary" ng-click="registryType('registryType')" aria-label="Registry Type"> <img class="png-icon" src="assets/img/registrytype.png" style="width: 24px; height: 24px;"> </md-button>
+                <div>Type</div>
+              </div>
+              <div class="col-md-3 col-sm-2">
+                <md-button class="md-fab md-primary" ng-click="registryType('eventDetails')" ng-disabled = "disableevent" aria-label="Event Details">  2</md-button>
+                <div>Event</div>
+              </div>
+              <div class="col-md-3 col-sm-2">
+
+                <md-button class="md-fab md-primary" ng-click="registryType('location')" ng-disabled = "disablelocation"  aria-label="location">  3</md-button>
+                <div>Location</div>
+              </div>
+              <div class="col-md-3 col-sm-2">
+                <md-button class="md-fab md-primary" ng-click="registryType('message')" ng-disabled = "disablemessage"  aria-label="Message">  4</md-button>
+                <div>Message</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div class="col-md-6">
+        <div id="form-views" ui-view></div>        
+      </div> -->
+  <!--   </div>
+</div> </div> -->
+</div>
+</div>

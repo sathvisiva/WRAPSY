@@ -1,0 +1,165 @@
+<navbar></navbar>
+<div class="home" ng-cloak>
+	<div class="share_main_block hidden-sm hidden-xs">
+		<span style="font-size: 12px; font-family: 'Montserrat', sans-serif; font-weight: bold; color: #6c3003;">Share</span>
+		<div class="clearfix"></div>
+		<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.wrapsy.in/"><i class="fa fa-facebook fb_social_share"></i></a>
+		<div class="clearfix"></div>
+		<a target="_blank" href="https://twitter.com/intent/tweet?url=https://www.wrapsy.in/"><i class="fa fa-twitter twitter_share"></i></a>
+		<div class="clearfix"></div>
+		<a target="_blank" href="https://plus.google.com/share?url=https://www.wrapsy.in/"><i class="fa fa-google-plus googleplus_share"></i></a>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+				<div uib-slide ng-repeat="slide in slides " index="$index">
+					<img ng-src="{{slide.imageUrl}}" >
+					<div class="carousel-caption">
+						<ul><li><h2 
+							class="wow bounceInLeft layer-1 slide-text hidden-xs" data-wow-duration="3s" data-wow-delay=".5s">{{slide.text}} </h2></li><li class="home-buttons hidden-xs">
+							<a ui-sref="manageregistryList" ng-show="isLoggedIn()" class="btn btn-primary mainbtn">Manage Registry</a>
+							<a ng-click="create($event)"  class="btn btn-primary mainbtn cursorpointer">Create Registry</a>
+							<a ui-sref="findregistry1" class="btn btn-primary mainbtn">Find Registry</a>
+							<a ui-sref="main"  class="btn btn-primary mainbtn">Shop Now</a>
+						</li>
+						<li class="home-buttons visible-xs">
+							<a ui-sref="manageregistryList"  ng-show="isLoggedIn()" class="btn btn-primary mainbtnxs">Manage Registry</a>
+							<a  ng-click="create($event)"   class="btn btn-primary mainbtnxs cursorpointer">Create Registry</a>
+							<a ui-sref="findregistry1" class="btn btn-primary mainbtnxs">Find Registry</a>
+							<a ui-sref="manageregistryList"  class="btn btn-primary mainbtnxs">Shop Now</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="section-details">
+	
+	<div class="category-title-header">
+		<div class="title-center">
+			<div class="title"><h1>It's convenient, easy and fun</h1></div>
+			<div class="separator-title"><div class="divider-line"></div></div>
+		</div>
+		<div class="clearer"></div>
+	</div>
+	<div class="row text-center" >
+		<div class="col-md-4">
+			<img src="/assets/img/create.svg" class="customimage">
+			<div>
+				<h3 class="howitworks">Create</h3>
+				<p class="howitworkstext">
+					Wedding? Birthday party? New home?
+					Create your wishlist. Choose from our wide range of products or add your own!
+				</p>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<img src="/assets/img/invite.svg" class="customimage">
+			<div>
+				<h3 class="howitworks">Invite</h3>
+				<p class="howitworkstext">
+					Confirm your wishlist and share your wishlist link on your invitation and on social media.
+				</p>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<img src="/assets/img/gift.svg" class="customimage">
+			<div>
+				<h3 class="howitworks">Gift</h3>
+				<p class="howitworkstext">
+					Super-duper easy for your guests. They will pick your favorite products. Win-win for everyone!
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<section class="home-categories">
+		<div class="category-title-header">
+
+			<div class="title-center">
+				<div class="title"><h1>Popular Categories</h1></div>
+				<div class="separator-title"><div class="divider-line"></div></div>
+			</div>
+			<div class="clearer"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 banner-holder cyan-hover" >
+				<a href="/category/fashion"><img class="img-responsive" src="https://ld-magento.template-help.com/magento_64134/pub/media/catalog/category/category-01.jpg" alt="Birthday Gifts"></a>      </div>
+				<div class="col-md-4 banner-holder cyan-hover">
+					<a href="/category/fashion"><img class="img-responsive" src="https://ld-magento.template-help.com/magento_64134/pub/media/catalog/category/category-02.jpg" alt="Birthday Gifts"></a>            </div>
+					<div class="col-md-4 banner-holder cyan-hover">
+						<a href="/category/fashion"><img class="img-responsive" src="https://ld-magento.template-help.com/magento_64134/pub/media/catalog/category/category-03_1.jpg" alt="Birthday Gifts"></a>            </div>
+					</div>
+				</section>
+				<div class="clearfix"></div>
+
+				<div class="registry-container">
+					<div class="container">
+						<div class="category-title-header">
+							<div class="title-center">
+								<div class="title"><h1>View A Sample Registry</h1></div>
+								<div class="separator-title"><div class="divider-line"></div></div>
+							</div>
+							<div class="clearer"></div>
+						</div>
+
+						<slick class="slider cyan-hover" settings="slickConfig3" dots=false ng-if="slickConfig3Loaded" init-onload=true data="registryslides" >
+							<div ng-repeat="slide in registryslides">
+								<a  ui-sref="registry({id:slide.registry})">
+									<img ng-src="{{slide.image}}" class="img-responsive" >
+								</a>
+								<div class="sampleregistryText">{{slide.text}}
+								</div>
+							</div>
+
+						</slick>
+					</div>
+				</div>	
+			</div>
+
+
+
+
+
+
+
+			<div class="home-categories">
+				<div class="category-title-header">
+					<div class="title-center">
+						<div class="title"><h1>Featured Products</h1></div>
+						<div class="separator-title"><div class="divider-line"></div></div>
+					</div>
+					<div class="clearer"></div>
+				</div>
+				<div class="figure">
+					<div class="container">
+						<div class="row">				
+
+							<div class="single-p-slide-bottom " single-p-slide-bottom>
+								<div  ng-repeat="product in products">
+									<div class="single-product">
+										<a class="col-md-12" ui-sref="product({id: product.slug})">
+											<img class="primary-img" src="{{product.images[0]}}" alt="">
+											<img class="secondary-img" src="{{product.images[0]}}" alt="">
+											<i class="fa fa-expand"></i>
+										</a>
+
+									</div>
+								</div>
+							</div>						
+
+						</div>
+
+					</div>
+				</div>
+			</div> 
+		</div>
+	</div>
+</div>
+
+
+</div>
+</div>
+
+<footer></footer> 

@@ -1,0 +1,536 @@
+.registryPage{
+background-color : #ffffff;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center ;
+
+}
+
+h3,h5{
+	font-family: 'Playfair Display', serif !important;
+}
+
+.registry-card{
+top: 18%;
+left: 25%;
+position: absolute !important;
+padding: 20px;
+}
+
+.event-details{
+background: url(https://d2i86m9fn0q3i7.cloudfront.net/wedding-registry/static/media/blur-couple-bg.20bc691f.png);
+background-size: cover;
+background-position: 50%;
+background-repeat: no-repeat;
+height : 100vh;
+}
+
+
+.registryPage.theme11{
+background-image: url('https://www.weddingwire.com/wedding_websites//designs/120/header_background_image_mobile-1376671622-website_bk.svg');
+//background-image: url('/assets/img/theme1.png');
+}
+
+.registryPage.theme1{
+
+background-image: url('/assets/img/theme3.jpg');
+}
+
+.registryPage.theme2{
+background-image: url(https://static.xoedge.com/xo-guest-services/assets/guest/themes/gold_glitter-coral/background_image-05f805b2ccac5db3f553831879a5b060.jpg);
+background-color: rgb(251, 156, 143);
+}
+
+.menutitle{
+font-family: "Libre Baskerville";
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+}
+
+.menutitle.theme11{
+color: rgb(77, 77, 77);
+}
+
+.menutitle.theme1{
+color: #EF756C;
+}
+
+
+.wedding-title.theme1{
+color : #98FB98;
+}
+
+.theme1font{
+color: #4D4D4D;
+font-family: Libre Baskerville;
+font-size: 16px;
+font-style: normal;
+}
+
+.theme2background{
+background-image: url(https://static.xoedge.com/xo-guest-services/assets/guest/themes/gold_glitter-coral/background_image-05f805b2ccac5db3f553831879a5b060.jpg);
+background-color: rgb(251, 156, 143);
+}
+
+.theme2color {
+color: #212426 !important;
+font-family: "Libre Baskerville";
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+color: #f47a6f;
+
+}
+
+.theme3background{
+background-image: url(https://static.xoedge.com/xo-guest-services/assets/guest/themes/spring/background_image-602f962ae9059b5afc24b1fbc59c146b.png);
+background-color: rgb(234, 248, 226);
+}
+
+.theme3color {
+color: rgb(77, 77, 77) !important;
+}
+
+
+.theme4background{
+background-image: url(https://static.xoedge.com/xo-guest-services/assets/guest/themes/floral_trellis/background_image-3f06174401d6cdb91c075c7a043e54ed.jpg);
+background-color:rgb(34, 60, 121);
+}
+
+.theme4color {
+color: black !important;
+}
+
+
+.theme5background{
+background-image: url(https://static.xoedge.com/xo-guest-services/assets/guest/themes/tree_tale-ivy/background_image-da35160baa3cde7471fdc2bff4ef3548.png);
+background-color:rgb(255, 252, 222);
+}
+
+.theme5color {
+color: #54771D !important;
+}
+
+
+
+.registry-page-container{
+margin-bottom : 40px;
+}
+
+.guestbook{
+min-height : 450px;
+}
+
+
+.registry-menu{
+margin-top: 40px;
+margin-bottom : 40px;
+
+}
+
+.registry-details{
+padding-bottom : 40px;  
+background-color : #ffffff;  
+}
+
+.registry-top{
+border: 15px solid white;
+}
+
+
+
+.registry-settings{
+margin-top: 30px;
+margin: 0 auto;
+max-width: 700px;
+padding: 10px 40px;
+}
+
+.registry-form{
+border: 1px solid #d9d9d9;
+border-radius: 0;
+box-shadow: none;
+}
+
+.registry-label{
+
+font-family: 'PT Serif', serif;
+color : #333
+}
+
+@media (min-width: 992px){
+.registry-top .registry-hero {
+height: 430px;
+}
+}
+
+@media (min-width: 768px){
+
+.registry-top .registry-hero {
+height: 430px;
+}
+}
+
+
+@media (min-width: 480px){
+
+.registry-top .registry-hero {
+height: 330px;
+}
+}
+
+
+.registry-top .registry-hero {
+margin: 0px 0 0px 0;
+}
+
+@media (min-width: 1280px){
+
+.registry-hero {
+padding: initial;
+height: 420px;
+}
+}
+
+.registry-hero {
+position: relative;
+max-width: 1280px;
+margin-right: auto;
+margin-left: auto;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+-ms-behavior: url(/assets/backgroundsize.htc);
+background-position: center;
+padding-bottom: 15.625%;
+}
+
+
+.full-width-image{
+background-size: cover;
+text-align: center;
+}
+
+.registry-image{
+position: relative;
+max-width: 1280px;
+margin-right: auto;
+margin-left: auto;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+-ms-behavior: url(/assets/backgroundsize.htc);
+background-position: center;
+max-height : 200px;
+padding : 0px;
+}
+
+.registry-hero .registry-hero-gradient {
+position: absolute;
+height: 50%;
+width: 100%;
+top: 0;
+background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5) 0, rgba(0,0,0,0) 100%);
+background-image: -o-linear-gradient(top, rgba(0,0,0,0.5) 0, rgba(0,0,0,0) 100%);
+background-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0, rgba(0,0,0,0) 100%);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=0);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#50000000,endColorstr=#00000000,GradientType=0);
+}
+
+.registry-top .registry-hero .hero-buttons {
+position: absolute;
+width: 100%;
+padding: 7px;
+}
+
+.registry-hero .registry-hero-content {
+padding-top: 75px;
+text-align: center;
+text-shadow: 1px 1px 15px rgba(0,0,0,0.4);
+}
+
+
+
+.btn-tertiary {
+color: #a8a8aa;
+background-color: #fff;
+border-color: #a8a8aa;
+}
+
+
+.registry-top .hero-cta {
+position: absolute;
+bottom: 10px;
+right: 7px;
+}
+
+
+
+
+@keyframes slideOutLeft {
+to      { transform: translateX(-200%); }
+}
+@-moz-keyframes slideOutLeft {  
+to      { -moz-transform: translateX(-200%); }
+}
+@-webkit-keyframes slideOutLeft {
+to      { -webkit-transform: translateX(-200%); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+from    { transform:translateX(200%); }
+to      { transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+from    { -moz-transform:translateX(200%); }
+to      { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+from    { -webkit-transform:translateX(200%); }
+to      { -webkit-transform: translateX(0); }
+}
+
+
+#form-container{  
+margin-bottom:20px;
+border-radius:5px; 
+}
+#form-container .page-header{  
+margin:0; padding:30px; 
+border-top-left-radius:5px;
+border-top-right-radius:5px; 
+}
+
+/* numbered buttons */
+#status-buttons a{ 
+color:#333; 
+display:inline-block; 
+font-size:12px; 
+margin-right:10px; 
+text-align:center; 
+text-transform:uppercase;
+}
+#status-buttons a:hover{ 
+text-decoration:none; 
+}
+#status-buttons span{ 
+background:grey; 
+display:block; 
+height:30px; 
+margin:0 auto 10px; 
+padding-top:5px; 
+width:30px; 
+border-radius:50%; 
+
+}
+
+.disableevent, .disablelocation, .disablemessage{
+cursor : not-allowed !important;
+}
+
+#status-buttons a.active span{ 
+background:#00BC8C; 
+}
+
+
+#signup-form{ 
+position:relative; 
+min-height:300px; 
+overflow:hidden; 
+
+}
+
+#form-views.ng-enter,
+#form-views.ng-leave{ 
+position:absolute; 
+left:30px; 
+right:30px;
+transition:0.5s all ease;
+-moz-transition:0.5s all ease; 
+-webkit-transition:0.5s all ease; 
+}
+
+
+#form-views.ng-enter{ 
+-webkit-animation:slideInRight 0.5s both ease;
+-moz-animation:slideInRight 0.5s both ease;
+animation:slideInRight 0.5s both ease; 
+}
+
+
+#form-views.ng-leave { 
+-webkit-animation:slideOutLeft 0.5s both ease;
+-moz-animation:slideOutLeft 0.5s both ease;
+animation:slideOutLeft 0.5s both ease;   
+}
+
+#title-container {
+position: relative;
+padding: 5px 10px 20px 0;
+text-align: center;
+background-color: white;
+}
+
+#wedding-title {
+font-family: Alex Brush !important;
+font-size: 60px !important;
+font-style: normal !important;
+margin: 6px 0 8px 0;
+line-height: 1;
+}
+
+#wedding-date-location {
+color: #000000;
+font-family: Work Sans;
+font-size: 16px;
+font-style: normal;
+}
+
+#wedding-date-location {
+font-family: "Work Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: normal;
+color: #000000;
+}
+
+#wedding-location {
+white-space: nowrap;
+}
+
+#wedding-countdown {
+color: #000000;
+font-family: Work Sans;
+font-size: 16px;
+font-style: normal;
+}
+
+#wedding-countdown {
+margin: 3px 1px;
+font-size: 1.6em;
+}
+
+#content {
+margin-top: 60px;
+}
+
+@media (min-width: 1200px){
+.page {
+width: 80%;
+}
+}
+
+@media (min-width: 768px){
+.page {
+width: 90%;
+}
+}
+
+.page {
+position: relative;
+margin-bottom: 1.5em;
+width: 80%;
+}
+
+.center-block, .page {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+
+
+.menu {
+list-style: none;
+text-align: center;
+text-transform: uppercase;
+margin: 10px;
+}
+
+.menu li {
+display: inline-block;
+margin: 0 10px;
+color: #008066;
+font-family: "EB Garamond";
+font-style: normal;
+font-weight: normal;
+}
+
+.cropArea {
+background: #E4E4E4;
+overflow: hidden;
+width:500px;
+height:350px;
+}
+
+
+.rsvpform{
+padding : 40px;
+}
+
+.delete{
+float : right;
+}
+
+.chipin{
+float : left;
+color : #F50057;
+margin-right: 3px;
+}
+
+.wrapper{
+  
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  
+
+  .file-upload{
+
+    height:200px;
+    width:200px;
+    border-radius: 100px;
+    position:relative;
+    
+    display:flex;
+    justify-content:center;
+    align-items: center;  
+
+    border:4px solid #FFFFFF;
+    overflow:hidden;
+    background-image: linear-gradient(to bottom, #2590EB 50%, #FFFFFF 50%);
+    background-size: 100% 200%;
+    transition: all 1s;
+    color: #FFFFFF;
+    font-size:100px;
+
+    input[type='file']{
+
+      height:200px;
+      width:200px;
+      position:absolute;
+      top:0;
+      left:0;
+      opacity:0;
+      cursor:pointer;
+
+    }
+
+    &:hover{
+
+      background-position: 0 -100%;
+
+      color:#2590EB;
+
+    }
+
+
+  }
+}

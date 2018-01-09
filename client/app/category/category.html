@@ -1,0 +1,98 @@
+<!-- <navbar></navbar>
+<div class="breadcrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 col-md-offset-3">
+        <ul class="breadcrumb">
+          <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+          <li class="active">search-result</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="category-title-header">
+    <div class="title-center">
+      <div class="title"><h1>{{category.name}}</h1></div>
+      <div class="separator-title"><div class="divider-line"></div></div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+</div> -->
+<div class="uimax-block-section-26 pdt-80 pdb-80">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="uimax-sidebar">
+          <div class="product-filter">
+            <div class="block price-filter">
+              <div class="title">Price</div>
+              <rzslider rz-slider-model="slider.minValue"
+              rz-slider-high="slider.maxValue"
+              rz-slider-options="slider.options"></rzslider>
+            </div> 
+
+            <div class="block size-filter" ng-repeat="k in category.filters">
+              <div class="title">{{k.feature}}</div>
+              <div class="checkbox" ng-repeat="f in k.value">
+                <label>
+                  <input type="checkbox" value="{{f}}" checklist-model="fl.features[k.feature]" checklist-value="f" ng-click="filters();" />
+                  {{f}}<span>&nbsp;</span>
+                </label>
+              </div>
+            </div>
+            
+
+   <!--        <div class="block color-filter">
+            <div class="title">Color</div>
+            <div class="select-group" ng-repeat = "color in colors">
+             <md-checkbox ng-model="selected.colors[color]" name="group" id="{{color}}" ng-change="colorchanged()">
+               {{ color }}
+             </md-checkbox>
+           </div>
+         </div> -->
+
+         
+           <!--  <div class="block price-range">
+              <div class="title">Price</div>
+              <rzslider rz-slider-model="minRangeSlider.minValue" rz-slider-high="minRangeSlider.maxValue" rz-slider-options="minRangeSlider.options"></rzslider>
+              
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="product-list" >
+          <div class="col-md-4 col-sm-12 col-xs-12 item" ng-repeat="product in products">
+            <div class="product-item">
+              <div class="pic-wrapper">
+                <a ui-sref="product({id: product.slug})" class="inner">
+                  <img ng-src="{{product.images[0]}}" alt="" class="pic" />
+                </a>
+                <a  ng-if = "product.affiliate" ui-sref="product({id: product.slug})" class="inner">
+                  <img ng-src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=IN&ASIN={{product.prodcode}}&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL160_&tag=sathviprasi-21" class="pic" alt="{{product.name}}" data-err-src="images/product.jpg" />
+                </a>
+              </div>
+              <div class="product-desc">
+                <h2 class="name"><a ui-sref="product({id: product.slug})" >{{product.title}}</a></h2>
+                <div class="price">₹{{product.price}}</div>
+              </div>
+              <span class="sale">sale</span>
+            </div>
+          </div>          
+        </div>
+        <div class="pull-right" ng-if="totalPages > 1">
+          <span class="cursorpointer" ng-show="page>1" ng-click="previousPage()">&lsaquo;&lsaquo;</span>
+          <span ng-click="nextPage()">{{page}}</span>
+          <span class="cursorpointer" ng-hide="disablednext" ng-click="nextPage()">&rsaquo;&rsaquo;</span>
+        </div>
+        <!-- <md-button class="md-raised md-accent pull-right" ng-show="page>0" ng-click="previousPage()">< Previous</md-button>
+        <md-button class="md-raised md-accent pull-right" ng-click="nextPage()">Next ></md-button> -->
+      </div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+<footer></footer>
