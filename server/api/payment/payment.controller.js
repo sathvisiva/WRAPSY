@@ -165,8 +165,8 @@ export function giftFilurePaymentStatus(req, res){
 }
 
 
-/*export function pdtPaymentStatus(req, res) {
-  Order.update({ _id: req.body.productinfo }, { $set: { paid: true }}, function (err, voucher) {
+export function pdtPaymentSuccess(req, res) {
+  Order.update({ _id: req.body.productinfo }, { $set: { paid: true }}, function (err, order) {
     if (err) {
       responseObject.err = err;
       responseObject.data = null;
@@ -177,9 +177,43 @@ export function giftFilurePaymentStatus(req, res){
 
     res.redirect('/orders');
   });
-}*/
+}
 
-/*export function contributionStatus(req, res) {
+export function pdtPaymentFailure(req, res) {
+    
+  Order.findById(req.body.productinfo, function(order){
+  if(order){
+ 
+  Order.update({ _id: req.body.productinfo }, { $set: { paid: false }}, function (err, order) {
+    if (err) {
+      responseObject.err = err;
+      responseObject.data = null;
+      responseObject.code = 422;
+
+      return res.json(responseObject);
+    }   
+
+    res.redirect('/orders');
+  });
+  
+  if(order.voucher && order.voucher != null){
+      Voucher.update({ 'code' : order.voucher }, { $set: { redeemed: true }}, function (err, resp) {
+          if (err) {
+            resp.err = err;
+            resp.data = null;
+            resp.code = 422;
+
+            return res.json(responseObject);
+          }
+          console.log(voucher);
+        
+        });
+  }
+  }
+  })
+}
+
+export function contributionSucessStatus(req, res) {
   console.log('payment success');
   console.log(req.body);
   console.log(JSON.stringify(req.body.productinfo));
@@ -212,7 +246,44 @@ export function giftFilurePaymentStatus(req, res){
 
   Registry.update(query, increment, function(err,registry){
     console.log(registry);
-  });}*/
+  });
+ }
+ 
+ export function contributionFailureStatus(req, res) {
+  console.log('payment success');
+  console.log(req.body);
+  console.log(JSON.stringify(req.body.productinfo));
+  var str = JSON.stringify(req.body.productinfo);
+  var productInfo = str.split(" ");
+  var contribution = {}
+  contribution.productId = productInfo[0].slice(1);
+  contribution.contribution = productInfo[1];
+  contribution.registryId = productInfo[2];
+  contribution.name = productInfo[3];
+  Contribution.create(contribution, function(err, registry) {
+    if(err) { return handleError(res, err); }
+    
+  });
+
+  console.log(contribution.contribution);
+  console.log(contribution.registryId);
+  console.log(contribution.productId);
+
+  var increment = {
+    $inc: {
+      'products.$.paid': parseInt(contribution.contribution)
+    }
+  };
+  var query = {
+    '_id': contribution.registryId.toString(),
+    'products._id': contribution.productId.toString()
+
+  };
+
+  Registry.update(query, increment, function(err,registry){
+    console.log(registry);
+  });
+ }
 
   // Gets a list of Vouchers
   export function index(req, res) {

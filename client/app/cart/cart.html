@@ -1,4 +1,5 @@
 <navbar></navbar>
+<!--
 <div class="row">
     <div class="col-md-8">
         <table class="table table-responsive">
@@ -29,7 +30,7 @@
             </tbody>
         </table>
     </div>
-</div>
+</div> -->
 <!--Breadcrumbs Start-->
 <!-- <div class="breadcrumb">
     <div class="container">
@@ -104,4 +105,385 @@
     </div>
 </section> -->
 <!--End of Cart Main Area-->
+
+
+<form >
+     
+        <div class="row" style="position: relative;">
+          <div class="col-xs-12 col-md-8">
+            <div class="checkout-module">
+      
+              <div class="module-title font-family-serif h6">Gifts</div>
+              <div class="module-body">
+                <div class="container-fluid">
+                  <div class="row hidden-xs">
+                    <div class="col-xs-6 th">items</div>
+                    <div class="th col-xs-2 unit-price">unit price</div>
+                    <div class="th col-xs-2">quantity</div>
+                    <div class="th col-xs-2 text-right">subtotal</div>
+                  </div>
+                  <!-- ngRepeat: cartItem in checkCtrl.items track by cartItem.id --><div class="cart-item" ng-repeat="cartItem in checkCtrl.items track by cartItem.id">
+                    <div class="row" zo-cart-item="cartItem" is-checkout="true" on-quantity-change="checkCtrl.handleQuantityChange(item)" on-remove="checkCtrl.removeItem(item)" show-expedite="!checkCtrl.expediteHidden"><span class="close visible-xs-block" ng-click="zoCartItem.remove()">×</span>
+<div class="col-xs-3 col-sm-2">
+  <a ng-href="/registry/collection-item/5812a564e4b003b1c9eb166e" target="_self" href="/registry/collection-item/5812a564e4b003b1c9eb166e"><img class="img-responsive" ng-src="//d20t6we9nb6rnn.cloudfront.net/gallery/products/cash_default_640.jpg" alt="Our Dream Fund" src="//d20t6we9nb6rnn.cloudfront.net/gallery/products/cash_default_640.jpg"></a>
+</div>
+<div class="col-xs-8 col-xs-no-gutter-left col-sm-4">
+  <div class="shop-entity-details">
+    <a ng-href="/registry/collection-item/5812a564e4b003b1c9eb166e" target="_self" ng-click="zoCartItem.closeModal()" class="entity-name" href="/registry/collection-item/5812a564e4b003b1c9eb166e">Our Dream Fund</a>
+    
+    <!-- ngIf: ::zoCartItem.item.groupGift --><div class="group-gift-tag" ng-if="::zoCartItem.item.groupGift"><span class="label label-primary">Group Gift Contribution</span></div><!-- end ngIf: ::zoCartItem.item.groupGift -->
+    
+    <div class="cart-item-attributes">
+      <!-- ngRepeat: skuAttribute in ::zoCartItem.item.skuAttributes -->
+      <!-- ngIf: zoCartItem.item.availability.stockStatus -->
+      <!-- ngIf: zoCartItem.item.availability.arrivalRange -->
+    </div>
+  </div>
+  
+  <!-- ngIf: ::zoCartItem.item.showExternalWarning && zoCartItem.isCheckout -->
+  <!-- ngIf: ::zoCartItem.item.isUpdated -->
+  <!-- ngIf: ::zoCartItem.item.deliverySurcharge -->
+  
+  <!-- ngIf: ::zoCartItem.showExpedite && zoCartItem.item.availability.isExpeditable -->
+  
+  <!-- ngRepeat: discount in zoCartItem.item.discounts -->
+  <!-- ngIf: zoCartItem.item.showExcludeFromPromo -->
+</div>
+<div class="hidden-xs col-sm-2 shop-entity-details">
+  <div class="price">
+    $0.06
+    <!-- ngIf: zoCartItem.item.contribution.price > zoCartItem.item.contribution.adjustedPrice -->
+  </div>
+</div>
+<div class="clearfix visible-xs-block"></div>
+<div class="col-xs-6 col-sm-2 cart-item-quantity">
+  <!-- ngIf: ::!zoCartItem.item.groupGift -->
+  
+  <!-- ngIf: ::zoCartItem.item.groupGift --><a role="button" class="small text-secondary hidden-xs" ng-click="zoCartItem.remove()" ng-if="::zoCartItem.item.groupGift">Remove</a><!-- end ngIf: ::zoCartItem.item.groupGift -->
+</div>
+<div class="col-xs-6 col-sm-2 cart-item-subtotal">
+  <strong class="price">$0.06</strong>
+</div>
+</div>
+                  </div><!-- end ngRepeat: cartItem in checkCtrl.items track by cartItem.id -->
+                </div>
+              </div>
+              <div zo-gift-message="" form="checkCtrl.checkout" details="checkCtrl.details" surprise-gift="checkCtrl.surpriseGift" gift-message="checkCtrl.giftMessage" max-date="checkCtrl.maxDate"><div class="module-title font-family-serif h6">Gift Info</div>
+<div class="module-body gift-info">
+  <div class="container-fluid">
+    <div><!-- ngIf: zoGiftMessage.details.isRegistry && !zoGiftMessage.details.isOwnRegistry --><strong ng-if="zoGiftMessage.details.isRegistry && !zoGiftMessage.details.isOwnRegistry">The couple will receive an email today notifying them of your gift.</strong><!-- end ngIf: zoGiftMessage.details.isRegistry && !zoGiftMessage.details.isOwnRegistry --></div>
+    <!-- ngIf: zoGiftMessage.surpriseGift.surpriseUntil --><small class="help-text help-block" ng-if="zoGiftMessage.surpriseGift.surpriseUntil">To keep it a surprise, check "Make this gift a surprise" below.</small><!-- end ngIf: zoGiftMessage.surpriseGift.surpriseUntil -->
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group" ng-class="{'has-error': zoGiftMessage.hasError('giftMessage')}">
+          <label for="giftMessage">Message</label>
+          <textarea name="giftMessage" id="giftMessage" class="form-control ng-pristine ng-untouched ng-valid" rows="5" ng-model="zoGiftMessage.giftMessage"></textarea>
+          <small class="pull-right padding-top" ng-class="{'text-red' : zoGiftMessage.isMaxReached()}">0 / 250</small>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <img class="hidden-sm hidden-xs" width="150" height="173" src="https://www.zola.com/assets/images/checkout/giftmessage.jpg" srcset="/assets/images/checkout/giftmessage@2x.jpg 2x" alt="Registry Gift Message">
+      </div>
+    </div>
+    
+    <!-- ngIf: zoGiftMessage.surpriseGift.surpriseUntil --><div ng-if="zoGiftMessage.surpriseGift.surpriseUntil" style="position:relative">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="zoGiftMessage.surpriseGift.isSurprise" class="ng-pristine ng-untouched ng-valid">
+          Make this gift a surprise <i class="zolaicon zolaicon-info text-center tooltipstered" zo-tooltip="" text="Your contact information will be hidden from the couple. <br> Gifts will be marked fulfilled on their registry to avoid duplicate gifts." text-as-html="true"></i>
+        </label>
+      </div>
+      <small class="help-text help-block">Keep it a secret until <!-- ngIf: zoGiftMessage.isWeddingSurpriseDate --><span ng-if="zoGiftMessage.isWeddingSurpriseDate">their wedding day, </span><!-- end ngIf: zoGiftMessage.isWeddingSurpriseDate -->Jan 14, 2018.
+        <a href="#!" ng-click="zoGiftMessage.toggleCalendar($event)">Change</a>
+        <input class="invisible ng-pristine ng-untouched ng-valid ng-valid-date ng-valid-required" uib-datepicker-popup="" show-button-bar="false" ng-model="zoGiftMessage.surpriseGift.surpriseUntil" ng-model-options="::zoGiftMessage.datepicker.timezone" ng-change="zoGiftMessage.updateDate()" is-open="zoGiftMessage.showCalendar" position="bottom-left" datepicker-options="::zoGiftMessage.datepicker.options" ng-required="true" required="required"><div uib-datepicker-popup-wrap="" ng-model="date" ng-model-options="ngModelOptions" ng-change="dateSelection(date)" template-url="uib/template/datepicker/popup.html" class="ng-valid">
+  <!-- ngIf: isOpen -->
+</div>
+      </small>
+    </div><!-- end ngIf: zoGiftMessage.surpriseGift.surpriseUntil -->
+  </div>
+</div>
+</div>
+              <!-- payment and billing -->
+              <div class="module-title font-family-serif h6">Payment & Billing</div>
+              <div class="module-body">
+                <div zo-payment-info="" form="checkCtrl.checkout" billing-info="checkCtrl.billingInfo" is-ship-to-self="!checkCtrl.shipToRegistryId && checkCtrl.details.canShip" available-credit="checkCtrl.details.availableCredit" max-applicable-credit="checkCtrl.details.maxApplicableCredit" order-total="checkCtrl.totals.total" checkout-data="checkCtrl.checkoutData" toggle-apply-credits="checkCtrl.toggleApplyCredits()"><!-- ngIf: zoPaymentInfo.availableCredit && zoPaymentInfo.maxApplicableCredit -->
+<div ng-show="zoPaymentInfo.orderTotal" class="container-fluid">
+  <!-- card information -->
+  <span class="h4 pull-left">Card Information</span>
+  <div class="row">
+    <div id="card-group" class="col-xs-12 form-group">
+      <label for="card-element">Credit or debit card</label>
+      <!-- a Stripe Element will be inserted here. -->
+      <div id="card-element" class="form-control StripeElement StripeElement--empty"><div class="__PrivateStripeElement" style="margin: 0px !important; padding: 0px !important; border: none !important; display: block !important; background: transparent !important; position: relative !important; opacity: 1 !important;"><iframe frameborder="0" allowtransparency="true" scrolling="no" name="__privateStripeFrame3" allowpaymentrequest="true" src="https://js.stripe.com/v3/elements-inner-card-239c567af6a4535ad167df34e793f3a7.html#hidePostalCode=true&style[base][lineHeight]=20px&style[base][fontSize]=14px&style[base][fontSmoothing]=antialiased&style[base][::placeholder][color]=%236e727d&style[invalid][color]=%23c7133e&componentName=card&wait=false&rtl=false&features[noop]=true&origin=https%3A%2F%2Fwww.zola.com&referrer=https%3A%2F%2Fwww.zola.com%2Fcart%2Fcheckout&controllerId=__privateStripeController0" title="Secure payment input frame" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; height: 20px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: 0px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important;"></div></div>
+      <!-- Used to display Element errors -->
+      <div id="card-errors" class="help-block error-block hidden"></div>
+    </div>
+  </div>
+</div>
+<!-- ngIf: zoPaymentInfo.orderTotal --><div ng-if="zoPaymentInfo.orderTotal" class="container-fluid">
+  <small class="help-text help-block cc-warning">This charge will appear on your credit card statement as "Zola Registry"</small>
+  <div class="row">
+    <div class="col-sm-5 col-xs-12 form-group" ng-class="{'has-error': zoPaymentInfo.hasError('cardFirstName')}">
+      <label>First Name</label>
+      <input type="text" name="cardFirstName" ng-model="zoPaymentInfo.billingInfo.firstName" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="">
+      <!-- ngIf: zoPaymentInfo.hasError('cardFirstName') -->
+    </div>
+    <div class="col-sm-7 col-xs-12 form-group" ng-class="{'has-error': zoPaymentInfo.hasError('cardLastName')}">
+      <label>Last Name</label>
+      <input type="text" name="cardLastName" ng-model="zoPaymentInfo.billingInfo.lastName" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="">
+      <!-- ngIf: zoPaymentInfo.hasError('cardLastName') -->
+    </div>
+  </div>
+  <!-- billing address -->
+  <div>
+    <h4 class="pull-left">Billing Address</h4>
+    <!-- ngIf: zoPaymentInfo.isShipToSelf -->
+  </div>
+  <div class="clearfix"></div>
+  <!-- ngIf: !zoPaymentInfo.billingInfo.useShippingAddress --><div ng-if="!zoPaymentInfo.billingInfo.useShippingAddress">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 form-group" ng-class="{'has-error': zoPaymentInfo.hasError('billingAddress.country')}">
+        <label>Country</label>
+        <select name="billingAddress.country" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" ng-options="country.code as country.fullName for country in zoPaymentInfo.checkoutData.countryCodes" ng-model="zoPaymentInfo.billingInfo.billingAddress.country" required=""><option value="string:USA" label="United States" selected="selected">United States</option><option value="string:AFG" label="Afghanistan">Afghanistan</option><option value="string:ALB" label="Albania">Albania</option><option value="string:DZA" label="Algeria">Algeria</option><option value="string:ASM" label="American Samoa">American Samoa</option><option value="string:AND" label="Andorra">Andorra</option><option value="string:AGO" label="Angola">Angola</option><option value="string:AIA" label="Anguilla">Anguilla</option><option value="string:ATA" label="Antarctica">Antarctica</option><option value="string:ATG" label="Antigua and Barbuda">Antigua and Barbuda</option><option value="string:ARG" label="Argentina">Argentina</option><option value="string:ARM" label="Armenia">Armenia</option><option value="string:ABW" label="Aruba">Aruba</option><option value="string:AUS" label="Australia">Australia</option><option value="string:AUT" label="Austria">Austria</option><option value="string:AZE" label="Azerbaijan">Azerbaijan</option><option value="string:BHS" label="Bahamas">Bahamas</option><option value="string:BHR" label="Bahrain">Bahrain</option><option value="string:BGD" label="Bangladesh">Bangladesh</option><option value="string:BRB" label="Barbados">Barbados</option><option value="string:BLR" label="Belarus">Belarus</option><option value="string:BEL" label="Belgium">Belgium</option><option value="string:BLZ" label="Belize">Belize</option><option value="string:BEN" label="Benin">Benin</option><option value="string:BMU" label="Bermuda">Bermuda</option><option value="string:BTN" label="Bhutan">Bhutan</option><option value="string:BOL" label="Bolivia">Bolivia</option><option value="string:BES" label="Bonaire, Sint Eustatius and Saba">Bonaire, Sint Eustatius and Saba</option><option value="string:BIH" label="Bosnia and Herzegovina">Bosnia and Herzegovina</option><option value="string:BWA" label="Botswana">Botswana</option><option value="string:BVT" label="Bouvet Island">Bouvet Island</option><option value="string:BRA" label="Brazil">Brazil</option><option value="string:IOT" label="British Indian Ocean Territory">British Indian Ocean Territory</option><option value="string:VGB" label="British Virgin Islands">British Virgin Islands</option><option value="string:BRN" label="Brunei">Brunei</option><option value="string:BGR" label="Bulgaria">Bulgaria</option><option value="string:BFA" label="Burkina Faso">Burkina Faso</option><option value="string:BDI" label="Burundi">Burundi</option><option value="string:KHM" label="Cambodia">Cambodia</option><option value="string:CMR" label="Cameroon">Cameroon</option><option value="string:CAN" label="Canada">Canada</option><option value="string:CPV" label="Cape Verde">Cape Verde</option><option value="string:CYM" label="Cayman Islands">Cayman Islands</option><option value="string:CAF" label="Central African Republic">Central African Republic</option><option value="string:TCD" label="Chad">Chad</option><option value="string:CHL" label="Chile">Chile</option><option value="string:CHN" label="China">China</option><option value="string:CXR" label="Christmas Island">Christmas Island</option><option value="string:CCK" label="Cocos Islands">Cocos Islands</option><option value="string:COL" label="Colombia">Colombia</option><option value="string:COM" label="Comoros">Comoros</option><option value="string:COG" label="Congo">Congo</option><option value="string:COK" label="Cook Islands">Cook Islands</option><option value="string:CRI" label="Costa Rica">Costa Rica</option><option value="string:HRV" label="Croatia">Croatia</option><option value="string:CUB" label="Cuba">Cuba</option><option value="string:CUW" label="Curaçao">Curaçao</option><option value="string:CYP" label="Cyprus">Cyprus</option><option value="string:CZE" label="Czech Republic">Czech Republic</option><option value="string:CIV" label="Côte d'Ivoire">Côte d'Ivoire</option><option value="string:DNK" label="Denmark">Denmark</option><option value="string:DJI" label="Djibouti">Djibouti</option><option value="string:DMA" label="Dominica">Dominica</option><option value="string:DOM" label="Dominican Republic">Dominican Republic</option><option value="string:ECU" label="Ecuador">Ecuador</option><option value="string:EGY" label="Egypt">Egypt</option><option value="string:SLV" label="El Salvador">El Salvador</option><option value="string:GNQ" label="Equatorial Guinea">Equatorial Guinea</option><option value="string:ERI" label="Eritrea">Eritrea</option><option value="string:EST" label="Estonia">Estonia</option><option value="string:ETH" label="Ethiopia">Ethiopia</option><option value="string:FLK" label="Falkland Islands">Falkland Islands</option><option value="string:FRO" label="Faroe Islands">Faroe Islands</option><option value="string:FJI" label="Fiji">Fiji</option><option value="string:FIN" label="Finland">Finland</option><option value="string:FRA" label="France">France</option><option value="string:GUF" label="French Guiana">French Guiana</option><option value="string:PYF" label="French Polynesia">French Polynesia</option><option value="string:ATF" label="French Southern Territories">French Southern Territories</option><option value="string:GAB" label="Gabon">Gabon</option><option value="string:GMB" label="Gambia">Gambia</option><option value="string:GEO" label="Georgia">Georgia</option><option value="string:DEU" label="Germany">Germany</option><option value="string:GHA" label="Ghana">Ghana</option><option value="string:GIB" label="Gibraltar">Gibraltar</option><option value="string:GRC" label="Greece">Greece</option><option value="string:GRL" label="Greenland">Greenland</option><option value="string:GRD" label="Grenada">Grenada</option><option value="string:GLP" label="Guadeloupe">Guadeloupe</option><option value="string:GUM" label="Guam">Guam</option><option value="string:GTM" label="Guatemala">Guatemala</option><option value="string:GGY" label="Guernsey">Guernsey</option><option value="string:GIN" label="Guinea">Guinea</option><option value="string:GNB" label="Guinea-Bissau">Guinea-Bissau</option><option value="string:GUY" label="Guyana">Guyana</option><option value="string:HTI" label="Haiti">Haiti</option><option value="string:HMD" label="Heard Island And McDonald Islands">Heard Island And McDonald Islands</option><option value="string:HND" label="Honduras">Honduras</option><option value="string:HKG" label="Hong Kong">Hong Kong</option><option value="string:HUN" label="Hungary">Hungary</option><option value="string:ISL" label="Iceland">Iceland</option><option value="string:IND" label="India">India</option><option value="string:IDN" label="Indonesia">Indonesia</option><option value="string:IRN" label="Iran">Iran</option><option value="string:IRQ" label="Iraq">Iraq</option><option value="string:IRL" label="Ireland">Ireland</option><option value="string:IMN" label="Isle Of Man">Isle Of Man</option><option value="string:ISR" label="Israel">Israel</option><option value="string:ITA" label="Italy">Italy</option><option value="string:JAM" label="Jamaica">Jamaica</option><option value="string:JPN" label="Japan">Japan</option><option value="string:JEY" label="Jersey">Jersey</option><option value="string:JOR" label="Jordan">Jordan</option><option value="string:KAZ" label="Kazakhstan">Kazakhstan</option><option value="string:KEN" label="Kenya">Kenya</option><option value="string:KIR" label="Kiribati">Kiribati</option><option value="string:KWT" label="Kuwait">Kuwait</option><option value="string:KGZ" label="Kyrgyzstan">Kyrgyzstan</option><option value="string:LAO" label="Laos">Laos</option><option value="string:LVA" label="Latvia">Latvia</option><option value="string:LBN" label="Lebanon">Lebanon</option><option value="string:LSO" label="Lesotho">Lesotho</option><option value="string:LBR" label="Liberia">Liberia</option><option value="string:LBY" label="Libya">Libya</option><option value="string:LIE" label="Liechtenstein">Liechtenstein</option><option value="string:LTU" label="Lithuania">Lithuania</option><option value="string:LUX" label="Luxembourg">Luxembourg</option><option value="string:MAC" label="Macao">Macao</option><option value="string:MKD" label="Macedonia">Macedonia</option><option value="string:MDG" label="Madagascar">Madagascar</option><option value="string:MWI" label="Malawi">Malawi</option><option value="string:MYS" label="Malaysia">Malaysia</option><option value="string:MDV" label="Maldives">Maldives</option><option value="string:MLI" label="Mali">Mali</option><option value="string:MLT" label="Malta">Malta</option><option value="string:MHL" label="Marshall Islands">Marshall Islands</option><option value="string:MTQ" label="Martinique">Martinique</option><option value="string:MRT" label="Mauritania">Mauritania</option><option value="string:MUS" label="Mauritius">Mauritius</option><option value="string:MYT" label="Mayotte">Mayotte</option><option value="string:MEX" label="Mexico">Mexico</option><option value="string:FSM" label="Micronesia">Micronesia</option><option value="string:MDA" label="Moldova">Moldova</option><option value="string:MCO" label="Monaco">Monaco</option><option value="string:MNG" label="Mongolia">Mongolia</option><option value="string:MNE" label="Montenegro">Montenegro</option><option value="string:MSR" label="Montserrat">Montserrat</option><option value="string:MAR" label="Morocco">Morocco</option><option value="string:MOZ" label="Mozambique">Mozambique</option><option value="string:MMR" label="Myanmar">Myanmar</option><option value="string:NAM" label="Namibia">Namibia</option><option value="string:NRU" label="Nauru">Nauru</option><option value="string:NPL" label="Nepal">Nepal</option><option value="string:NLD" label="Netherlands">Netherlands</option><option value="string:ANT" label="Netherlands Antilles">Netherlands Antilles</option><option value="string:NCL" label="New Caledonia">New Caledonia</option><option value="string:NZL" label="New Zealand">New Zealand</option><option value="string:NIC" label="Nicaragua">Nicaragua</option><option value="string:NER" label="Niger">Niger</option><option value="string:NGA" label="Nigeria">Nigeria</option><option value="string:NIU" label="Niue">Niue</option><option value="string:NFK" label="Norfolk Island">Norfolk Island</option><option value="string:PRK" label="North Korea">North Korea</option><option value="string:MNP" label="Northern Mariana Islands">Northern Mariana Islands</option><option value="string:NOR" label="Norway">Norway</option><option value="string:OMN" label="Oman">Oman</option><option value="string:PAK" label="Pakistan">Pakistan</option><option value="string:PLW" label="Palau">Palau</option><option value="string:PSE" label="Palestine">Palestine</option><option value="string:PAN" label="Panama">Panama</option><option value="string:PNG" label="Papua New Guinea">Papua New Guinea</option><option value="string:PRY" label="Paraguay">Paraguay</option><option value="string:PER" label="Peru">Peru</option><option value="string:PHL" label="Philippines">Philippines</option><option value="string:PCN" label="Pitcairn">Pitcairn</option><option value="string:POL" label="Poland">Poland</option><option value="string:PRT" label="Portugal">Portugal</option><option value="string:PRI" label="Puerto Rico">Puerto Rico</option><option value="string:QAT" label="Qatar">Qatar</option><option value="string:REU" label="Reunion">Reunion</option><option value="string:ROU" label="Romania">Romania</option><option value="string:RUS" label="Russia">Russia</option><option value="string:RWA" label="Rwanda">Rwanda</option><option value="string:BLM" label="Saint Barthélemy">Saint Barthélemy</option><option value="string:SHN" label="Saint Helena">Saint Helena</option><option value="string:KNA" label="Saint Kitts And Nevis">Saint Kitts And Nevis</option><option value="string:LCA" label="Saint Lucia">Saint Lucia</option><option value="string:MAF" label="Saint Martin">Saint Martin</option><option value="string:SPM" label="Saint Pierre And Miquelon">Saint Pierre And Miquelon</option><option value="string:VCT" label="Saint Vincent And The Grenadines">Saint Vincent And The Grenadines</option><option value="string:WSM" label="Samoa">Samoa</option><option value="string:SMR" label="San Marino">San Marino</option><option value="string:STP" label="Sao Tome And Principe">Sao Tome And Principe</option><option value="string:SAU" label="Saudi Arabia">Saudi Arabia</option><option value="string:SEN" label="Senegal">Senegal</option><option value="string:SRB" label="Serbia">Serbia</option><option value="string:SYC" label="Seychelles">Seychelles</option><option value="string:SLE" label="Sierra Leone">Sierra Leone</option><option value="string:SGP" label="Singapore">Singapore</option><option value="string:SXM" label="Sint Maarten (Dutch part)">Sint Maarten (Dutch part)</option><option value="string:SVK" label="Slovakia">Slovakia</option><option value="string:SVN" label="Slovenia">Slovenia</option><option value="string:SLB" label="Solomon Islands">Solomon Islands</option><option value="string:SOM" label="Somalia">Somalia</option><option value="string:ZAF" label="South Africa">South Africa</option><option value="string:SGS" label="South Georgia And The South Sandwich Islands">South Georgia And The South Sandwich Islands</option><option value="string:KOR" label="South Korea">South Korea</option><option value="string:ESP" label="Spain">Spain</option><option value="string:LKA" label="Sri Lanka">Sri Lanka</option><option value="string:SDN" label="Sudan">Sudan</option><option value="string:SUR" label="Suriname">Suriname</option><option value="string:SJM" label="Svalbard And Jan Mayen">Svalbard And Jan Mayen</option><option value="string:SWZ" label="Swaziland">Swaziland</option><option value="string:SWE" label="Sweden">Sweden</option><option value="string:CHE" label="Switzerland">Switzerland</option><option value="string:SYR" label="Syria">Syria</option><option value="string:TWN" label="Taiwan">Taiwan</option><option value="string:TJK" label="Tajikistan">Tajikistan</option><option value="string:TZA" label="Tanzania">Tanzania</option><option value="string:THA" label="Thailand">Thailand</option><option value="string:COD" label="The Democratic Republic Of Congo">The Democratic Republic Of Congo</option><option value="string:TLS" label="Timor-Leste">Timor-Leste</option><option value="string:TGO" label="Togo">Togo</option><option value="string:TKL" label="Tokelau">Tokelau</option><option value="string:TON" label="Tonga">Tonga</option><option value="string:TTO" label="Trinidad and Tobago">Trinidad and Tobago</option><option value="string:TUN" label="Tunisia">Tunisia</option><option value="string:TUR" label="Turkey">Turkey</option><option value="string:TKM" label="Turkmenistan">Turkmenistan</option><option value="string:TCA" label="Turks And Caicos Islands">Turks And Caicos Islands</option><option value="string:TUV" label="Tuvalu">Tuvalu</option><option value="string:VIR" label="U.S. Virgin Islands">U.S. Virgin Islands</option><option value="string:UGA" label="Uganda">Uganda</option><option value="string:UKR" label="Ukraine">Ukraine</option><option value="string:ARE" label="United Arab Emirates">United Arab Emirates</option><option value="string:GBR" label="United Kingdom">United Kingdom</option><option value="string:UMI" label="United States Minor Outlying Islands">United States Minor Outlying Islands</option><option value="string:URY" label="Uruguay">Uruguay</option><option value="string:UZB" label="Uzbekistan">Uzbekistan</option><option value="string:VUT" label="Vanuatu">Vanuatu</option><option value="string:VAT" label="Vatican">Vatican</option><option value="string:VEN" label="Venezuela">Venezuela</option><option value="string:VNM" label="Vietnam">Vietnam</option><option value="string:WLF" label="Wallis And Futuna">Wallis And Futuna</option><option value="string:ESH" label="Western Sahara">Western Sahara</option><option value="string:YEM" label="Yemen">Yemen</option><option value="string:ZMB" label="Zambia">Zambia</option><option value="string:ZWE" label="Zimbabwe">Zimbabwe</option><option value="string:ALA" label="Åland Islands">Åland Islands</option></select>
+        <!-- ngIf: zoPaymentInfo.hasError('billingAddress.country') -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 form-group" ng-class="{'has-error': zoPaymentInfo.hasError('billingAddress.streetAddress1')}">
+        <label>Street Address</label>
+        <input class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" type="text" name="billingAddress.streetAddress1" ng-model="zoPaymentInfo.billingInfo.billingAddress.streetAddress1" required="">
+        <!-- ngIf: zoPaymentInfo.hasError('billingAddress.streetAddress1') -->
+      </div>
+      <div class="col-xs-12 col-sm-4 form-group">
+        <label>Apt / Floor <small class="text-muted">(optional)</small></label>
+        <input class="form-control ng-pristine ng-untouched ng-valid" type="text" name="billingAddress.streetAddress2" ng-model="zoPaymentInfo.billingInfo.billingAddress.streetAddress2">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 form-group" ng-class="{'has-error': zoPaymentInfo.hasError('billingAddress.city')}">
+        <label>City</label>
+        <input class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" type="text" name="billingAddress.city" ng-model="zoPaymentInfo.billingInfo.billingAddress.city" required="">
+        <!-- ngIf: zoPaymentInfo.hasError('billingAddress.city') -->
+      </div>
+      <div class="col-xs-12 col-sm-4 form-group" ng-switch="zoPaymentInfo.billingInfo.billingAddress.country" ng-class="{'has-error': zoPaymentInfo.hasError('billingAddress.state')}">
+        <!-- ngSwitchWhen: USA --><div ng-switch-when="USA">
+          <!-- ngInclude: '/assets/templates/zola/checkout/stateDropdown.html' --><div ng-include="'/assets/templates/zola/checkout/stateDropdown.html'"><label>State</label>
+<select class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="billingAddress.state" ng-model="zoPaymentInfo.billingInfo.billingAddress.state" ng-required="zoPaymentInfo.isUsa()" required="required">
+  <option value=""></option>
+  <option value="AL">Alabama</option>
+  <option value="AK">Alaska</option>
+  <option value="AZ">Arizona</option>
+  <option value="AR">Arkansas</option>
+  <option value="CA">California</option>
+  <option value="CO">Colorado</option>
+  <option value="CT">Connecticut</option>
+  <option value="DE">Delaware</option>
+  <option value="DC">District Of Columbia</option>
+  <option value="FL">Florida</option>
+  <option value="GA">Georgia</option>
+  <option value="HI">Hawaii</option>
+  <option value="ID">Idaho</option>
+  <option value="IL">Illinois</option>
+  <option value="IN">Indiana</option>
+  <option value="IA">Iowa</option>
+  <option value="KS">Kansas</option>
+  <option value="KY">Kentucky</option>
+  <option value="LA">Louisiana</option>
+  <option value="ME">Maine</option>
+  <option value="MD">Maryland</option>
+  <option value="MA">Massachusetts</option>
+  <option value="MI">Michigan</option>
+  <option value="MN">Minnesota</option>
+  <option value="MS">Mississippi</option>
+  <option value="MO">Missouri</option>
+  <option value="MT">Montana</option>
+  <option value="NE">Nebraska</option>
+  <option value="NV">Nevada</option>
+  <option value="NH">New Hampshire</option>
+  <option value="NJ">New Jersey</option>
+  <option value="NM">New Mexico</option>
+  <option value="NY">New York</option>
+  <option value="NC">North Carolina</option>
+  <option value="ND">North Dakota</option>
+  <option value="OH">Ohio</option>
+  <option value="OK">Oklahoma</option>
+  <option value="OR">Oregon</option>
+  <option value="PA">Pennsylvania</option>
+  <option value="RI">Rhode Island</option>
+  <option value="SC">South Carolina</option>
+  <option value="SD">South Dakota</option>
+  <option value="TN">Tennessee</option>
+  <option value="TX">Texas</option>
+  <option value="UT">Utah</option>
+  <option value="VT">Vermont</option>
+  <option value="VA">Virginia</option>
+  <option value="WA">Washington</option>
+  <option value="WV">West Virginia</option>
+  <option value="WI">Wisconsin</option>
+  <option value="WY">Wyoming</option>
+  <optgroup label="Armed Forces">
+    <option value="AA">Armed Forces Americas (AA)</option>
+    <option value="AP">Armed Forces Pacific (AP)</option>
+    <option value="AE">Armed Forces Europe (AE)</option>
+  </optgroup>
+</select>
+</div>
+        </div><!-- end ngSwitchWhen: -->
+        <!-- ngSwitchWhen: CAN -->
+        <!-- ngSwitchDefault:  -->
+        <!-- ngIf: zoPaymentInfo.hasError('billingAddress.state') -->
+      </div>
+      <div class="col-xs-12 col-sm-4 form-group" ng-class="{'has-error': zoPaymentInfo.hasError('billingAddress.postalCode')}">
+        <!-- ngIf: zoPaymentInfo.isUsa() --><div ng-if="zoPaymentInfo.isUsa()">
+          <label>Zip Code</label>
+          <input class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-postal-code ng-invalid-required" type="text" name="billingAddress.postalCode" ng-model="zoPaymentInfo.billingInfo.billingAddress.postalCode" ng-blur="zoPaymentInfo.zipCallback()" required="" zo-postal-code="">
+          <!-- ngIf: zoPaymentInfo.hasError('billingAddress.postalCode') -->
+        </div><!-- end ngIf: zoPaymentInfo.isUsa() -->
+        <!-- ngIf: !zoPaymentInfo.isUsa() -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 form-group" ng-class="{'has-error': zoPaymentInfo.hasError('billingAddress.phoneNumber')}">
+        <label>Phone Number</label>
+        <input class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" type="tel" name="billingAddress.phoneNumber" placeholder="(___) ___-____" ng-model="zoPaymentInfo.billingInfo.billingAddress.phoneNumber" minlength="10" required="">
+        <!-- ngIf: zoPaymentInfo.hasError('billingAddress.phoneNumber') -->
+      </div>
+    </div>
+  </div><!-- end ngIf: !zoPaymentInfo.billingInfo.useShippingAddress -->
+</div><!-- end ngIf: zoPaymentInfo.orderTotal -->
+</div>
+                <!-- guest email -->
+                <!-- ngIf: checkCtrl.isGuest --><div class="container-fluid" ng-if="checkCtrl.isGuest">
+                  <h4>Where would you like us to send order updates?</h4>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-6 form-group" ng-class="{'has-error': checkCtrl.hasError('orderEmail')}">
+                      <label>Email</label>
+                      <input class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required" name="orderEmail" ng-model="checkCtrl.orderEmail" type="email" zo-validate-email="" required="">
+                      <!-- ngIf: checkCtrl.hasError('orderEmail') -->
+                    </div>
+                    <div class="col-xs-12 col-sm-6 form-group" ng-class="{'has-error': checkCtrl.hasError('confirmOrderEmail')}">
+                      <label>Confirm Email</label>
+                      <input class="form-control ng-pristine ng-untouched ng-valid-field-match ng-valid-email ng-invalid ng-invalid-required" name="confirmOrderEmail" ng-model="checkCtrl.confirmOrderEmail" type="email" required="" zo-validate-field-match="checkCtrl.orderEmail" zo-validate-email="">
+                      <!-- ngIf: checkCtrl.hasError('confirmOrderEmail') -->
+                    </div>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="checkCtrl.newsletter" class="ng-pristine ng-untouched ng-valid">
+                      Yes, send me email updates from Zola.
+                      <small class="help-text help-block">(You'll be the first to know about our new arrivals, registry ideas and special offers.)</small>
+                    </label>
+                  </div>
+                </div><!-- end ngIf: checkCtrl.isGuest -->
+              </div>
+            </div>
+          </div>
+          <!-- sticky right totals etc -->
+          <div class="col-xs-12 col-md-4 sticky-nav-rail-menu">
+            <div class="checkout-module mobile-promo hidden-md hidden-lg">
+              <div class="module-body">
+                <div class="font-family-serif h6 promo-title">Promotion Code</div>
+                <!-- ngIf: !checkCtrl.promo --><div ng-if="!checkCtrl.promo" class="row padding-top-2x">
+                  <div class="col-xs-7">
+                    <label class="sr-only" for="promoInput">Enter Code</label>
+                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid" ng-model="checkCtrl.promoCode" placeholder="Enter Code">
+                  </div>
+                  <div class="col-xs-5">
+                    <a class="btn btn-block btn-tertiary" ng-click="checkCtrl.applyPromo()">Apply</a>
+                  </div>
+                </div><!-- end ngIf: !checkCtrl.promo -->
+                <!-- ngIf: checkCtrl.promo -->
+              </div>
+            </div>
+            <div sticky-kit="checkCtrl.stickyNavSettings" class="">
+              <div class="checkout-module">
+                <div class="module-title font-family-serif h6">Order Summary</div>
+                <div class="module-body">
+                  <div zo-order-totals="checkCtrl.totals" class="order-totals container-fluid"><div class="row">
+  <div class="col-xs-6">Subtotal</div>
+  <div class="col-xs-6">
+    $0.06
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-6">Tax</div>
+  <div class="col-xs-6">
+    $0
+  </div>
+</div>
+<!-- ngIf: zoOrderTotals.totals.deliverySurcharge -->
+
+<!-- ngIf: !zoOrderTotals.totals.deliverySurcharge --><div class="row" ng-if="!zoOrderTotals.totals.deliverySurcharge">
+  <div class="col-xs-6">Shipping</div>
+  <!-- ngIf: zoOrderTotals.totals.shipping -->
+  <!-- ngIf: !zoOrderTotals.totals.shipping --><div class="col-xs-6" ng-if="!zoOrderTotals.totals.shipping">
+    FREE
+  </div><!-- end ngIf: !zoOrderTotals.totals.shipping -->
+</div><!-- end ngIf: !zoOrderTotals.totals.deliverySurcharge -->
+<!-- ngIf: zoOrderTotals.totals.handlingFee -->
+<!-- ngIf: zoOrderTotals.totals.creditApplied -->
+<!-- ngIf: zoOrderTotals.totals.discountsApplied -->
+<div class="total row">
+  <div class="col-xs-6">Total</div>
+  <div class="col-xs-6">
+    $0.06
+  </div>
+</div>
+
+<!-- ngIf: zoOrderTotals.totals.amountSaved -->
+</div>
+                  <button type="submit" class="btn btn-block btn-lg btn-primary margin-top-2x" ng-disabled="checkCtrl.disableSubmit || checkCtrl.belowMinimum" ng-click="checkCtrl.submitCheckout()" disabled="disabled">
+                    Place Order
+                    <span><!-- ngIf: !checkCtrl.disableSubmit --><i ng-if="!checkCtrl.disableSubmit" class="zolaicon zolaicon-lock"></i><!-- end ngIf: !checkCtrl.disableSubmit --></span>
+                    <!-- ngIf: checkCtrl.disableSubmit -->
+                  </button>
+                  <!-- ngIf: checkCtrl.belowMinimum --><div ng-if="checkCtrl.belowMinimum" class="text-center padding-top-2x minimum-alert">
+                    There is a minimum charge of 50 cents for credit card transactions. Please contact customer support.
+                  </div><!-- end ngIf: checkCtrl.belowMinimum -->
+                </div>
+              </div>
+              <div class="text-center hidden-md hidden-lg">Already have a Zola account? <a class="login-link" role="button" data-link-name="Login" id="loginLink" ng-click="promptLogin('/cart/checkout')">Log In</a></div>
+              <!-- TODO avoid duplication with mobile -->
+              <div class="checkout-module hidden-xs hidden-sm">
+                <div class="module-body">
+                  <div class="font-family-serif h6 promo-title">Promotion Code</div>
+                  <!-- ngIf: !checkCtrl.promo --><div ng-if="!checkCtrl.promo" class="row padding-top-2x">
+                    <div class="col-xs-7">
+                      <label class="sr-only" for="promoInput">Enter Code</label>
+                      <input type="text" class="form-control ng-pristine ng-valid ng-touched" ng-model="checkCtrl.promoCode" placeholder="Enter Code">
+                    </div>
+                    <div class="col-xs-5">
+                      <a class="btn btn-block btn-tertiary" ng-click="checkCtrl.applyPromo()">Apply</a>
+                    </div>
+                  </div><!-- end ngIf: !checkCtrl.promo -->
+                  <!-- ngIf: checkCtrl.promo -->
+                </div>
+              </div>
+              <div class="help-right norton-sect">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <!-- ngInclude: '/assets/templates/zola/checkout/nortonSeal.html' --><div class="pull-left" ng-include="'/assets/templates/zola/checkout/nortonSeal.html'"><img onclick="window.open('https://trustsealinfo.websecurity.norton.com/splash?form_file=fdf/splash.fdf&dn=www.zola.com&lang=en','verisign','scrollbars=yes,resizable=yes,toolbar=0,menubar=0,location=0,status=0,height=500,width=560,top=200,left=200');" style="cursor: pointer" src="/assets/images/norton-seal.png">
+</div>
+                  </div>
+                  <div class="col-xs-6 centered-outer">
+                    <p class="centered-inner">Encrypted with 128-bit SSL. 100% secure.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="help-right">
+                <div class="row">
+                  <div class="col-xs-8">
+                    <div class="text-h4 font-family-serif margin-bottom">Need Help?</div>
+                    <div class="value-label"><strong>Email:</strong> <a href="mailto:support@zola.com" target="_self">support@zola.com</a></div>
+                    <div class="value-label"><strong>Phone:</strong> 1 (408) 657-ZOLA</div>
+                  </div>
+                  <div class="col-xs-4">
+                    <img class="headset-image" width="126" height="82" src="//d1tntvpcrzvon2.cloudfront.net/vzassets/1.0.123/images/registryBenefits/advisor.png" srcset="//d1tntvpcrzvon2.cloudfront.net/vzassets/1.0.123/images/registryBenefits/advisor@2x.png 2x" alt="Registry Support">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
 <footer></footer>

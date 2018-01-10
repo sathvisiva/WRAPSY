@@ -126,7 +126,8 @@ export function redeem(req, res) {
       }else if(parseInt(voucher.amount) > parseInt(req.body.amount)){
         return res.json({'errorcode' :2});
       }else{
-        Voucher.update({ 'code' : code }, { $set: { redeemed: true }}, function (err, resp) {
+        res.status(204).end();
+       /* Voucher.update({ 'code' : code }, { $set: { redeemed: true }}, function (err, resp) {
           if (err) {
             resp.err = err;
             resp.data = null;
@@ -136,7 +137,7 @@ export function redeem(req, res) {
           }
           console.log(voucher);
           return res.json(voucher);
-        });
+        }); */
       }
     }else{
       return res.json({'errorcode' :3});

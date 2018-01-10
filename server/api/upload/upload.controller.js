@@ -11,6 +11,7 @@
 
 import _ from 'lodash';
 import path from 'path';
+var fs = require('fs');
 
 var Upload = require('./upload.model');
 
@@ -55,6 +56,18 @@ function removeEntity(res) {
     if (entity) {
       return entity.removeAsync()
         .then(() => {
+          fs.stat(url, function (err, stats) {
+          console.log(stats);//here we got all information of file in stats variable
+
+          if (err) {
+            return console.error(err);
+           }
+
+            fs.unlink(url,function(err){
+                if(err) return console.log(err);
+                console.log('file deleted successfully');
+            });  
+          });
           res.status(204).end();
         });
     }
@@ -102,7 +115,7 @@ export function update(req, res) {
 
 // Deletes a Upload from the DB
 export function destroy(req, res) {
-  Upload.findByIdAsync(req.params.id)
+  Upload.find({'url' : req.body.url})
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));

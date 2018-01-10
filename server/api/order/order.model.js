@@ -15,7 +15,14 @@ var OrderItemSchema = new Schema({
   productId: {
     type: Schema.Types.ObjectId,
     ref: 'Product'
-  }
+  },
+  statuschange : [{
+      status : String,
+      modified : {
+            type: Boolean,
+            default: false
+      }
+  }]
 });
 
 var OrderSchema = new Schema({
@@ -30,13 +37,23 @@ var OrderSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  shipping : {
   customerName: String,
   customerEmail: String,
   customerAddress: String,
   customerPhone: String,
   customerCity: String,
   customerState: String,
-  customerCountry: String,
+  customerCountry: String
+  },
+  payment : {
+      method : String,
+      txn : String
+  },
+  voucher: {
+    type: Schema.Types.ObjectId,
+    ref: 'Voucher'
+  },
   delivered: {
     type: Boolean,
     default: false

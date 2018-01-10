@@ -11,7 +11,9 @@
 
 import _ from 'lodash';
 var Order = require('./order.model');
+var Voucher = require('../voucher/voucher.model');
 var Product = require('../product/product.model').product;
+var Registry = require('../registry/registry.model').registry;
 
 
 function handleError(res, statusCode) {
@@ -95,6 +97,17 @@ export function create(req, res) {
               product.saveAsync();
             });
         })
+        if(entity.voucher != null){
+          Voucher.update({ 'code' : entity.voucher }, { $set: { redeemed: true }}, function (err, resp) {
+          if (err) {
+            resp.err = err;
+            resp.data = null;
+            resp.code = 422;
+
+            return res.json(responseObject);
+          }
+        });
+        }
         res.status(201).json(entity);
       }
     })
