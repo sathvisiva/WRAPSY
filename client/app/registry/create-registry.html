@@ -42,7 +42,7 @@
            </div>
          </div>
        </div>
-       <div class="row" ng-if="registry.type == 'wedding'">
+       <div class="row" ng-if="registry.type == 'wedding' || registry.type == 'anniversary'">
          <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
            <label>Partner's First Name</label>
            <input type="text"  class="form-control" placeholder="First Name" id="firstName" ng-model="registry.firstName" name="firstName" required>
@@ -77,7 +77,7 @@
      </div>
      <div class="row text-center">
       <div class="col-lg-6 col-md-6 col-sm-6 col-md-offset-3">
-        <input type="submit" class="btn btn-primary btn-block" value="Let's Get Started">
+        <input type="submit" class="btn btn-primary btn-block" ng-disabled="form1.$invalid" value="Let's Get Started">
       </div>
     </div>
 

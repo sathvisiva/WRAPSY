@@ -7,5 +7,10 @@ angular.module('wrapsy')
 		url: '/giftcard',
 		templateUrl: 'app/giftcard/giftcard.html',
 		controller: 'giftcardCtrl'
+	})
+	.state('myvouchers', {
+		url: '/myvouchers',
+		templateUrl: 'app/giftcard/voucherslist.html',
+		controller: 'VoucherListCtrl'
 	});
 });

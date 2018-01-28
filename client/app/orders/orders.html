@@ -1,4 +1,4 @@
-<navbar></navbar>
+<!-- <navbar></navbar>
 <div class="breadcrumb">
     <div class="container">
         <div class="row">
@@ -71,4 +71,91 @@
     </div>
 </section>
 <br>
+<footer></footer>
+-->
+<navbar></navbar>
+<div class="container">
+    <div class="m-b-20 clearfix">
+        <div class="page-title text-center">
+            <h3 class="text-center"><strong>My Orders</strong></h3>
+
+        </div>
+
+    </div>
+
+
+    <div class="table-responsive"> 
+       <div ng-repeat = "order in orders">
+          <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center"><a  class="cursorpointer"><strong>Product Description</strong></a> </th>
+                    <th class="text-center"><a  class="cursorpointer"><strong>Order</strong></a> </th>
+                    <th class="text-center"><a  class="cursorpointer"><strong>Status</strong></a> </th>
+                    <th class="text-center"><a  class="cursorpointer"><strong>Price</strong></a> </th>
+                    <th class="text-center"><a  class="cursorpointer"><strong>GST</strong></a> </th>
+                    <th class="text-center"><a  class="cursorpointer"><strong>Subtotal</strong></a> </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in order.items"" class="order-col">
+                    <td class="text-center"> <div class="row"><div class=col-md-4>
+                      <img ng-src="{{item.products.coverimage}}" class="thumb"/>
+                  </div>
+                  <div class=col-md-8>
+                    Quantity : {{item.quantity}}
+                    <br>
+                    <div ng-repeat = "f in item.features">
+                      {{f.feature}} :  {{f.value}}
+                  </div>
+              </div>
+          </div> </td>
+          <td class="text-center">#{{order.orderNumber}}</td>
+          <td class="text-center">{{item.status}}</td>
+          <td class="text-center">₹{{item.products.price | number}}</td>
+          <td class="text-center">{{item.products.gst}}%</td>
+          <td class="text-center">₹{{item.subtotal}}</td>
+      </tr>
+  </tbody> 
+</table>
+</div>
+</div>
+</div>
+
+
+<!-- <md-content class="md-whiteframe-z1" layout-padding>
+    <div ng-repeat = "order in orders">
+      <div>Order No : {{order.orderNumber}}</div>
+      <br>
+      <table>
+          <thead>
+            <tr>
+              <th>Product Description</th>
+              <th>Status</th>
+              <th>Price</th>
+              <th>Subtotal</th>
+          </tr>
+      </thead>
+      <tr ng-repeat="item in order.items">
+        <td><div layout="row">
+          <div flex>
+              <img ng-src="{{item.products.coverimage}}" class="thumb"/>
+          </div>
+          <div flex>
+            Quantity : {{item.quantity}}
+            <br>
+            <div ng-repeat = "f in item.features">
+              {{f.feature}} :  {{f.value}}
+          </div>
+      </div>
+  </div></td>
+  <td>Placed</td>
+  <td>{{item.products.price}}</td>
+  <td>{{item.subtotal}}</td>
+</tr>
+</table>
+</div>
+<br>
+</md-content> -->
 <footer></footer>

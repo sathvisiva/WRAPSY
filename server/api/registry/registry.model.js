@@ -185,12 +185,7 @@ var RegistrySchema = new Schema({
     type: Number,
     default: 0
   },
-  size : {
-    type : String
-  },
-  color : {
-    type : String
-  }
+  feature : Array
 
 
 

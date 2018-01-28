@@ -6,12 +6,12 @@
 
     constructor($http, $scope, $timeout, Registry,$uibModal,$state, Auth,$stateParams,stateService, Address) {
 
-      $scope.disableevent = true;
+     /* $scope.disableevent = true;
       $scope.disablelocation = true ; 
       $scope.disablemessage = true;
       $scope.enableSecondName = false;
       $scope.eventformsubmitted = false;
-      $scope.locationformsubmitted = false;
+      $scope.locationformsubmitted = false;*/
       this.isLoggedIn = Auth.isLoggedIn;
       $scope.getCurrentUser = Auth.getCurrentUser;
       $scope.phoneNumbr = /^\+?\d{2}\d{3}\d{5}$/;
@@ -22,7 +22,7 @@
       console.log($scope.registry.type)
 
       $scope.states = stateService.getstates();
-      $scope.eventType = function(type){
+/*      $scope.eventType = function(type){
         $scope.registry.type = type;
         if($scope.registry.type == 'wedding'){
           $scope.enableSecondName = true;
@@ -30,9 +30,9 @@
         $scope.disableevent = false;
         $state.go('createregistry.eventDetails');
         console.log($scope.registry);
-      }
+      }*/
 
-      $scope.saveeventdetails = function(form){
+  /*    $scope.saveeventdetails = function(form){
         $scope.eventformsubmitted = false;
         if (!form.$valid) {
           $scope.eventformsubmitted = true
@@ -53,7 +53,7 @@
           $state.go('createregistry.message');
         }
 
-      }
+      }*/
 
    /*   $scope.registryType = function(state){
         $scope.state = 'createregistry.'+state;
@@ -70,13 +70,7 @@
         //$scope.registry.backgroundImageUrl = 'assets/img/cover.jpg'
         $scope.registry.profileImageUrl = 'assets/img/noimage.jpg'          
         Registry.save($scope.registry, function(resp) {
-          $scope.address.registryId = resp._id
-          Address.save($scope.address, function(resp) {
-
-          }, function(err) {
-            console.log(err)
-          })
-          $state.go('registry.home', {id: resp.slug});
+          $state.go('dashboard', {id: resp.slug});
         }, function(err) {
           console.log(err)
         })
@@ -119,11 +113,20 @@ angular.module('wrapsy')
   function($scope, $stateParams, $state,  Registry,$uibModal, Upload, Auth, toaster,$timeout,$mdDialog) {
 
 
+    console.log(window.location.origin)
+
+    var path = "/" + window.location.pathname.split('/')[1];
+    console.log(path);
+
 
     $scope.form = {};
 
+    $scope.success = function () {
+      console.log('Copied!');
+    };
+
     $scope.setTheme = function(selectedthem){
-      $scope.theme = $scope.selectedthem;
+      $scope.theme = 'theme2'//$scope.selectedthem;
       console.log($scope.theme)
     }
 
@@ -131,11 +134,22 @@ angular.module('wrapsy')
 
       $scope.registry = Registry.get({ slug: $stateParams.id }, function(resp) {
         console.log(resp);
+        $scope.websiteurl = window.location.origin + "/"+ window.location.pathname.split('/')[1] +'/'+ resp.slug
+
         if(Auth.getCurrentUser().email == resp.username){
           $scope.editable = true
         }
-        $scope.setTheme($scope.registry.theme);
-        console.log($scope.theme);
+
+        $scope.count = 0
+        for (var i=0 ; i < resp.products.length ; i++){
+
+          if(resp.products[i].required == resp.products[i].desired){
+            $scope.count += 1;
+          }
+        }
+        $scope.registry.theme = 'theme6';
+        /* $scope.setTheme($scope.registry.theme);*/
+        /*console.log($scope.theme);*/
       });
     }
 
@@ -386,7 +400,7 @@ angular.module('wrapsy')
             var modalInstance = $uibModal.open({
               templateUrl : 'app/registry/registry-product.html',
               controller: 'RegistryProductDetailCtrl',
-              size :'md',
+              size :'lg',
               resolve: {
                 registry: function () {
                  return $scope.registry._id;
@@ -399,15 +413,15 @@ angular.module('wrapsy')
               console.log(result)
               $scope.queryRegistry()
             }, function() {
-  // Cancel
-});
+
+            });
           }
 
           $scope.chipinProductDetail = function(product){  
             var modalInstance = $uibModal.open({
               templateUrl : 'app/registry/registry-chipinproduct.html',
               controller: 'RegistryChipinProductDetailCtrl',
-              size :'md',
+              size :'lg',
               resolve: {
                 registry: function () {
                  return $scope.registry._id;
@@ -420,8 +434,8 @@ angular.module('wrapsy')
               console.log(result)
               $scope.queryRegistry()
             }, function() {
-  // Cancel
-});
+
+            });
             /* }*/
          /* $scope.registry.backgroundImageUrl = "assets/img/cover.jpg"
          */
@@ -443,14 +457,19 @@ angular.module('wrapsy')
           console.log(result)
           $scope.queryRegistry()
         }, function() {
-  // Cancel
-});
-        /* }*/
-         /* $scope.registry.backgroundImageUrl = "assets/img/cover.jpg"
-         */
-       }
 
-       $scope.setVisible = function(visible){
+        });
+      }
+
+      $scope.producttypes = function(){  
+        var modalInstance = $uibModal.open({
+          templateUrl : 'app/registry/product-options.html',  
+          controller: 'RegistryProductTypesCtrl',        
+          size :'md',
+        })
+      }
+
+      $scope.setVisible = function(visible){
         $scope.registry.visible = visible;
 
 
@@ -458,12 +477,13 @@ angular.module('wrapsy')
         $scope.visibility.id = $scope.registry._id
         $scope.visibility.visible = visible
         Registry.makevisible($scope.visibility,  function(resp) {
-         console.log(resp);
+         $scope.queryRegistry();
        },function(err) {
         console.log(err)
       });
 
       }
+
 /*
 
       $scope.updateDesiredCount = function(count){
@@ -508,40 +528,103 @@ angular.module('wrapsy')
 
 
 angular.module('wrapsy')
-.controller('backgroundImageCtrl', ['$scope', '$stateParams', '$state', 'Registry','$uibModalInstance',
-  function($scope, $stateParams, $state,  Registry, $uibModalInstance) {
+.controller('backgroundImageCtrl', ['$scope', '$stateParams', '$state', 'Registry','Upload',
+  function($scope, $stateParams, $state,  Registry,Upload) {
 
 
     $scope.myCroppedImage='';
     $scope.myImage= '';
 
-    $scope.upload = function(file) {
-      var selectedfile=file;
-      var reader = new FileReader();
-      reader.onload = function (evt) {
-        $scope.$apply(function($scope){
-          $scope.myImage=evt.target.result;
-        });
+    $scope.registryslug = $stateParams.id;
+
+    $scope.upload = function(file , err) {
+      if(file){
+        var selectedfile=file;
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+          $scope.$apply(function($scope){
+            $scope.myImage=evt.target.result;
+            console.log($scope.myImage)
+          });
+        };
+        reader.readAsDataURL(file);
+      }
+
+    }
+
+    $scope.uploadprofileImage = function(file) {
+      if (file) {
+        Upload.upload({
+          url: '/api/uploads',
+          data: { file: file }
+        }).then(function(resp) {
+          $scope.registry = {}
+          $scope.registry.id = $scope.registryslug;
+          $scope.registry.profileImageUrl = resp.data.url
+          Registry.updateProfilepic({id:$scope.registryslug},$scope.registry).$promise.then(function(res) {
+            $state.go('dashboard', {id: $scope.registryslug});
+          })
+         /*if ($scope.registry) {
+
+          $scope.registry.profileImageUrl = resp.data.url;
+
+          Registry.updateProfilepic({id:$scope.registryslug},$scope.registry).$promise.then(function(res) {
+            console.log(res);
+            console.log("success")
+          });
+        } else {
+          $scope.registry = { profileImageUrl: resp.data.imageUrl }
+        }
+        */
+      }, function(resp) {
+        $scope.errorMsg = resp.status + ': ' + resp.data;
+      }, function(evt) {
+        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+          });
       };
-      reader.readAsDataURL(file);
-
-    }    
-
-
-
-    $scope.myCroppedImage = '';
-
-    $scope.Withoutcrop = function(){
-      $uibModalInstance.close($scope.myImage); 
     }
 
 
-    $scope.crop = function(){
-      $uibModalInstance.close($scope.myCroppedImage); 
-    }
+    function dataURItoBlob(dataURI) {
 
-  }
-  ]);
+            // convert base64/URLEncoded data component to raw binary data held in a string
+            var byteString;
+            if (dataURI.split(',')[0].indexOf('base64') >= 0)
+              byteString = atob(dataURI.split(',')[1]);
+            else
+              byteString = unescape(dataURI.split(',')[1]);
+
+            // separate out the mime component
+            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+            // write the bytes of the string to a typed array
+            var ia = new Uint8Array(byteString.length);
+            for (var i = 0; i < byteString.length; i++) {
+              ia[i] = byteString.charCodeAt(i);
+            }
+
+            return new Blob([ia], {type:mimeString});
+          }    
+
+
+
+          $scope.myCroppedImage = '';
+
+          $scope.Withoutcrop = function(){
+            $uibModalInstance.close($scope.myImage); 
+          }
+
+
+          $scope.crop = function(){
+            /*$uibModalInstance.close($scope.croppedImage);*/ 
+            var blob = dataURItoBlob($scope.croppedImage);
+            var file = new File([blob], 'fileName.jpeg', {type: "'image/jpeg"});
+            $scope.uploadprofileImage(file)
+          }
+
+        }
+        ]);
 
 angular.module('wrapsy')
 .controller('themeCtrl', ['$scope', '$stateParams', '$state', 'Registry','$uibModalInstance',
@@ -561,8 +644,8 @@ angular.module('wrapsy')
 ]);
 
 angular.module('wrapsy')
-.controller('RegistryProductDetailCtrl', ['$scope', '$stateParams', '$state', 'Registry','$uibModalInstance','registry','registryprod','Product','ngCart',
-  function($scope, $stateParams, $state,  Registry, $uibModalInstance,registry,registryprod,Product,ngCart) {
+.controller('RegistryProductDetailCtrl', ['$scope', '$stateParams', '$state', 'Registry','$uibModalInstance','registry','registryprod','Product','ngCart','Cart','Auth','$uibModal',
+  function($scope, $stateParams, $state,  Registry, $uibModalInstance,registry,registryprod,Product,ngCart,Cart,Auth,$uibModal) {
 
     $scope.registryid = registry
     $scope.registryprod = registryprod;
@@ -579,56 +662,98 @@ angular.module('wrapsy')
     q.where = { $and : f};
 
 
-    $scope.BuyProduct = function(product,qty){
+/*    $scope.BuyProduct = function(product,qty){
       console.log($scope.qty)
       console.log(product);
       var gst = parseInt(product.sgst) + parseInt(product.cgst);
       var gstamount = (parseInt(gst)*parseInt(qty)*parseInt(product.price))/100
       ngCart.addItem(product._id, product.title, product.price, qty, product,$scope.registryprod.color,$scope.registryprod.size,gstamount,$scope.registryid);
-      $uibModalInstance.close();  
-    }
+      
+    }*/
 
-    $scope.buyNow = function(qyt){
-      $uibModalInstance.close("test");  
-      if(!$scope.registryprod.custom){
-        var buyproduct = $scope.product;
-      }else{
-        var buyproduct = $scope.registryprod;
-      }
-      Registry.updatePdtcnt({ id: $scope.registryid  }, buyproduct, function(resp) {
-        console.log(resp);
+
+    var items = {};
+    $scope.BuyProduct = function(product, qty){
+      items.quantity = qty;
+      items.features = $scope.registryprod.feature
+      items.products = product._id
+      items.registry = $scope.registryid
+      var gst = (parseInt(product.gst) * 0.01 * parseInt(product.price)) + parseInt(product.price);
+      items.subtotal = parseInt(qty) * gst
+      console.log(items.products)
+
+      Cart.addTocart({id : Auth.getCurrentUser()._id},items,function(res){
+        $uibModalInstance.close();
+        var modalInstance = $uibModal.open({
+          templateUrl : 'app/cart/cart.html',
+          controller: 'CartCtrl',
+          size :'lg'
+        })
+
+
       }, function(err) {
         console.log(err)
-        $scope.message = "An error occured!"
       });
-    } 
-    if(!$scope.registryprod.custom){
-      $scope.product = Product.get({ id: registryprod.slug });
-    }
-
-    $scope.max = parseInt(registryprod.desired) - parseInt(registryprod.required)
-
-    $scope.ok = function() {
-      $uibModalInstance.close();  
-    };
 
 
-    $scope.cancel = function() {
-      $uibModalInstance.dismiss('cancel');
-    };
 
+
+
+      
+
+
+/*  Cart.alterpdtQuantity({id : Auth.getCurrentUser()._id},items,function(res){
+    console.log(res)
+  })*/
+}
+
+
+
+
+
+$scope.buyNow = function(qyt){
+  $uibModalInstance.close("test");  
+  if(!$scope.registryprod.custom){
+    var buyproduct = $scope.product;
+  }else{
+    var buyproduct = $scope.registryprod;
   }
-  ]);
+  Registry.updatePdtcnt({ id: $scope.registryid  }, buyproduct, function(resp) {
+    console.log(resp);
+  }, function(err) {
+    console.log(err)
+    $scope.message = "An error occured!"
+  });
+} 
+if(!$scope.registryprod.custom){
+  $scope.product = Product.get({ id: registryprod.slug });
+}
+
+$scope.max = parseInt(registryprod.desired) - parseInt(registryprod.required)
+
+$scope.ok = function() {
+  $uibModalInstance.close();  
+};
+
+
+$scope.cancel = function() {
+  $uibModalInstance.dismiss('cancel');
+};
+
+}
+]);
 
 angular.module('wrapsy')
-.controller('RegistryChipinProductDetailCtrl', ['$scope', '$stateParams', '$state', 'Registry','$uibModalInstance','registry','registryprod','Product','Auth',
-  function($scope, $stateParams, $state,  Registry, $uibModalInstance,registry,registryprod,Product,Auth) {
+.controller('RegistryChipinProductDetailCtrl', ['$scope', '$stateParams', '$state', 'Registry','$uibModalInstance','registry','registryprod','Product','Auth','Payment',
+  function($scope, $stateParams, $state,  Registry, $uibModalInstance,registry,registryprod,Product,Auth, Payment) {
 
     $scope.registryid = registry
     $scope.registryprod = registryprod;
+    console.log($scope.registryid)
     console.log($scope.registryprod);
-    $scope.contribution = 100;
+    $scope.contribution = parseInt(100);
     $scope.maxprice = parseInt(registryprod.price);
+    $scope.isLoggedIn = Auth.isLoggedIn;
 
     $scope.paidPercent = (parseInt(registryprod.price) / parseInt(registryprod.paid))*100;
     $scope.total = parseInt(registryprod.price) * parseInt(registryprod.desired);
@@ -659,10 +784,10 @@ angular.module('wrapsy')
     $scope.txnid = makeid();
     $scope.id = uuidv4();
     $scope.type = '2';
-    $scope.email = 'sathvisiva@gmail.com';
+    $scope.email = this.getCurrentUser().email;
     $scope.phone = 9176464641;
     $scope.lastName = this.getCurrentUser().name;
-    $scope.firstName = '';
+    $scope.firstName = 'this.getCurrentUser().name';
     $scope.surl = "http://localhost:9000/api/payment/contributionStatus";
     $scope.furl = "http://localhost:9000/api/payment/contributionStatus";
     $scope.hash = '';
@@ -677,15 +802,23 @@ angular.module('wrapsy')
       })
     }
     $scope.ok = function(){
-      $scope.contribution = {};
       if($scope.isLoggedIn()){
         $scope.name = Auth.getCurrentUser().name || {};
-        /*$scope.contribution.productId = $scope.product._id;
-        $scope.contribution.contribution = $scope.contributionamount;
-        $scope.contribution.registryId = $scope.registryId;*/
-        $scope.amount = $scope.contributionamount;
-        var  prodinfo = $scope.product._id +','+ $scope.contributionamount +',' + $scope.registryId+ ',' + $scope.name;
-        $scope.productInfo = prodinfo;
+        console.log($scope.amount)
+        var prodinfo = []
+        console.log($scope.registryprod._id)
+        console.log($scope.amount)
+        console.log($scope.registryid)
+        console.log($scope.name)
+        prodinfo.push($scope.registryprod._id)
+        prodinfo.push($scope.amount)
+        prodinfo.push($scope.registryid)
+        prodinfo.push($scope.name)
+        $scope.productInfo = prodinfo.toString();
+
+        
+
+
         console.log($scope.productInfo);
         $scope.presubmit();
        /* Registry.contribution($scope.productInfo, function(resp) {
@@ -909,7 +1042,7 @@ angular.module('wrapsy')
 
   }
   ]);
-angular.module('wrapsy')
+/*angular.module('wrapsy')
 .controller('inviteRegistryCtrl',function ($scope,$rootScope,$state, $stateParams,Registry,Auth,$location, $uibModalInstance) {
 
  $scope.url = 'http://www.wrapsytest.com'+$location.path();
@@ -919,6 +1052,21 @@ angular.module('wrapsy')
   $uibModalInstance.dismiss('Close');
 };
 $scope.ok = function (wishlistid) {
+  $uibModalInstance.close('ok');
+};
+
+});*/
+
+//RegistryProductTypesCtrl
+angular.module('wrapsy')
+.controller('RegistryProductTypesCtrl',function ($scope,$rootScope,$state, $stateParams,Registry,Auth,$location, $uibModalInstance) {
+
+
+ $scope.cancel = function () {
+  $uibModalInstance.dismiss('Close');
+};
+$scope.ok = function (state) {
+  $state.go(state)
   $uibModalInstance.close('ok');
 };
 

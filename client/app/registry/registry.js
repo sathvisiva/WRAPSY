@@ -25,6 +25,12 @@ angular.module('wrapsy')
     url: '/message',
     templateUrl: 'app/registry/message.html'
   })*/
+
+  .state('uploadimage', {
+    url: '/uploadimage/{id}',
+    templateUrl: 'app/registry/backgroundImages.html',
+    controller: 'backgroundImageCtrl'
+  })
   .state('manageregistry', {
     url: '/manage-registry/{id}',
     templateUrl: 'app/registry/manage-registry.html',
@@ -35,11 +41,11 @@ angular.module('wrapsy')
     templateUrl: 'app/registry/manage-registry-list.html',
     controller: 'ManageRegistryListController'
   })
-  /*.state('registry', {
-    url: '/registry/{id}',
-    templateUrl: 'app/registry/registry.html',
+  .state('dashboard', {
+    url: '/registry/{id}/dashboard',
+    templateUrl: 'app/registry/dashboard.html',
     controller: 'RegistryController'
-  })*/
+  })
   .state('registry', {
     url: '/registry/{id}',
     templateUrl: 'app/registry/registry.html',
@@ -65,6 +71,11 @@ angular.module('wrapsy')
     url: '/accomodation',
     templateUrl: 'app/registry/accomodation.html'
   })
+/*  .state('dashboard', {
+    url: '/dashboard',
+    templateUrl: 'app/registry/dashboard.html',
+    controller: 'RegistryController'
+  })*/
   .state('findregistry', {
     url: '/find-registry',
     templateUrl: 'app/registry/find-registry.html',

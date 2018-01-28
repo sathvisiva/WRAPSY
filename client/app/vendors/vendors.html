@@ -35,7 +35,7 @@
                 <td class="text-center">{{f.commision}}</td>
                 <td class="text-center"> 
                     <a ui-sref="admin.editvendor({id: f._id})" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> Edit</a>
-                    <a ng-click="deleteVendor('Vendor ' + f.name, f)" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> Remove</a>
+                    <a ng-click="deleteVendor($event , f)" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> Remove</a>
                 </td>
             <!-- <td >
                 <a ng-click="deleteFeature('Product ' + f.key, f)" class="trash"><span class="fa fa-trash fa-2x">                                </span></a>

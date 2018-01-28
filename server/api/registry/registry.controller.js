@@ -151,13 +151,23 @@ exports.makevisible = function(req, res) {
     if (err) {
       handleError(err)
     }
-   /* Registry.findById(req.params.id, function (err, registry) {
+    return res.json(registry);
 
-      if(err) { return handleError(res, err); }
-      if(!registry) { return res.status(404).send('Not Found'); }
-      return res.json(registry);
-    });*/
+  });
+};
 
+exports.updateProfilepic = function(req, res) {
+
+  /*var visiblity = */
+  console.log("inside profile pic update");
+
+  console.log(req.body);
+  console.log(req.query);
+
+  Registry.update({ slug: req.body.id }, { $set: { profileImageUrl: req.body.profileImageUrl }}, function (err, registry) {
+    if (err) {
+      handleError(err)
+    }
     return res.json(registry);
 
   });
@@ -442,7 +452,7 @@ exports.getRegistryProduct = function(req, res) {
 
   };*/
 
-  exports.updateRegistryProduct = function(registryId, productId,quantity, email, name){
+  exports.updateRegistryProduct = function(registryId, productId,quantity){
 
 
     Registry.findOne({'products._id': productId}, {'products.$': 1}, function(err, registry){

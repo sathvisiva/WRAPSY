@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('wrapsy')
-.controller('ManageVendorsCtrl', ['$scope', 'Vendor', 'Modal',
-  function($scope, Vendor, Modal) {
+.controller('ManageVendorsCtrl', ['$scope', 'Vendor','$mdDialog',
+  function($scope, Vendor,$mdDialog) {
 
     Vendor.query(function(vendor) {
       $scope.vendor = vendor;
@@ -10,7 +10,7 @@ angular.module('wrapsy')
         // pagination controls
         $scope.currentPage = 1;
         $scope.totalItems = $scope.vendor.length;
-        $scope.itemsPerPage = 10; // items per page
+        $scope.itemsPerPage = 3; // items per page
         $scope.noOfPages = Math.ceil($scope.totalItems / $scope.itemsPerPage);
       });
 
@@ -22,15 +22,37 @@ angular.module('wrapsy')
       $scope.propertyName = propertyName;
     };
 
-    $scope.deleteVendor = Modal.confirm.delete(function(c) {
+   /* $scope.deleteVendor = Modal.confirm.delete(function(c) {
 
       c.$remove(c._id, function(resp) {
         console.log(resp)
         $scope.vendor.splice($scope.vendor.indexOf(c), 1);
       })
+    });*/
+
+    $scope.deleteVendor = function(ev, vendor) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+    .title('Would you like to delete Vendor' + vendor.name +'?')
+    .textContent('Deleting the Vendor will also remove all the products added by the Vendor')
+    .ariaLabel('Delete Vendor')
+    .targetEvent(ev)
+    .ok('Please do it!')
+    .cancel('Cancel');
+
+    $mdDialog.show(confirm).then(function() {
+      $scope.status = 'ok';
+      vendor.$remove(vendor._id, function(resp) {
+        console.log(resp)
+        //$scope.vendor.splice($scope.vendor.indexOf(c), 1);
+      })
+    }, function() {
+      $scope.status = 'cancel';
+      console.log($scope.status)
     });
-  }
-  ])
+  };
+}
+])
 
 .controller('VendorsEditCtrl', ['$scope', '$state', 'Vendor', '$stateParams',
   function($scope, $state, Vendor, $stateParams) {

@@ -1,0 +1,140 @@
+<navbar></navbar>
+<section>
+	<div class="row">
+		<div class="category-title-header">
+			<div class="title-center">
+				<div class="title"><h1>Registry Dashboard</h1></div>
+				<div class="separator-title"><div class="divider-line"></div></div>
+			</div>
+			<div class="clearer"></div>
+		</div>
+	</div>
+</section>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<md-card>
+				<md-card-title style="background-color: #3399ff;">
+					<md-card-title-text>
+						<span class="dashboard-title"><span class="fa fa-wifi">&nbsp;Invite</span></span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content layout-align="center center">
+					<div class="text-center" ng-model="websiteurl">
+						{{websiteurl}}
+					</div>
+					<br>
+					<div class="text-center">
+						<md-button clipboard text="websiteurl" on-copied="success()" on-error="fail(err)" class="md-fab md-mini md-accent" aria-label="Eat cake">
+							<md-icon md-font-icon="fa fa-copy"></md-icon>
+						</md-button>
+
+						<md-button class="md-fab md-accent md-mini" aria-label="Use Android">
+							<md-icon md-font-icon="fa fa-google"></md-icon>
+						</md-button>
+
+						<md-button class="md-fab md-mini md-accent"  aria-label="Comment">
+							<md-icon md-font-icon="fa fa-facebook"></md-icon>
+						</md-button>
+					</div>
+					<br>
+					<div class="text-center">
+						<a class="btn btn-md btn-danger publish-registry-button" ng-if="registry.visible" ng-click="setVisible(false)">Make It Invisible</a>
+						<a class="btn btn-md btn-danger publish-registry-button" ng-if="!registry.visible" ng-click="setVisible(true)">Make It Visible</a>
+					</div>
+				</md-card-content>
+			</md-card>
+		</div>
+		<div class="col-md-6">
+			<md-card>
+				<md-card-title style="background-color: #3399ff;">
+					<md-card-title-text>
+						<span class="dashboard-title"><span class="fa fa-gift">&nbsp;Registry</span></span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content layout-align="center center">
+					<div class="text-center">
+						<ul>
+							<li>
+								<a class="cursorpointer" ng-click="producttypes()"> <span class="fa fa-plus"></span> Add Registry Products</a>
+							</li>
+							<br>
+							<li>
+								<a class="cursorpointer"><span class="fa fa-pencil"></span> Edit Registry Products</a>
+							</li>
+							<br>
+							<li>
+								<span>Products in Registry :</span> <span>{{registry.products.length}}</span>
+
+							</li>
+							<br>
+							<li>
+								<span>Products Sold in Registry :</span> <span>{{count}}</span>
+
+							</li>
+						</ul>
+					</div>
+
+					
+				</md-card-content>
+			</md-card>
+		</div>
+
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<md-card>
+				<md-card-title style="background-color: #3399ff;">
+					<md-card-title-text>
+						<span class="dashboard-title"><span class="fa fa-desktop">&nbsp;Theme</span></span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content layout-align="center center">
+					<div class="text-center">
+						Cover Photo
+					</div>
+					<br>
+					<div class="container">
+						<div class="row text-center">
+							<div class="col-md-12">
+								<a ui-sref="uploadimage({id:registry.slug})">
+									<img class="img-responsive" ng-src="{{registry.profileImageUrl}}" style="border: 10px solid darkgrey;" >
+								</a>
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="text-center">
+						<a class="btn btn-md btn-danger publish-registry-button" ng-if="registry.visible" ng-click="setVisible(false)">Make It Invisible</a>
+						<a class="btn btn-md btn-danger publish-registry-button" ng-if="!registry.visible" ng-click="setVisible(true)">Make It Visible</a>
+					</div>
+				</md-card-content>
+			</md-card>
+		</div>
+		<div class="col-md-6">
+			<md-card>
+				<md-card-title style="background-color: #3399ff;">
+					<md-card-title-text>
+						<span class="dashboard-title"><span class="fa fa-gift">&nbsp;Registry</span></span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content layout-align="center center">
+					<div class="text-center">
+						<ul>
+							<li>
+								<a class="cursorpointer" ng-click="producttypes()"> <span class="fa fa-plus"></span> Add Registry Products</a>
+							</li>
+							<br>
+							<li>
+								<a class="cursorpointer"><span class="fa fa-pencil"></span> Edit Registry Products</a>
+							</li>
+						</ul>
+					</div>
+				</md-card-content>
+			</md-card>
+		</div>
+
+	</div>
+</div>
+<footer></footer>

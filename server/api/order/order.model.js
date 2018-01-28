@@ -8,61 +8,66 @@ var Schema = mongoose.Schema
 autoIncrement.initialize(mongoose.createConnection(config.mongo.uri));
 
 var OrderItemSchema = new Schema({
-  name: String,
-  price: Number,
-  quantity: Number,
-  total: Number,
-  productId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Product'
-  },
-  statuschange : [{
-      status : String,
-      modified : {
-            type: Boolean,
-            default: false
-      }
-  }]
+ quantity: Number,  
+ registry :  String,
+ features : Array,
+ status : String,
+ products: {
+  type: Schema.Types.ObjectId,
+  ref: 'Product'
+},
+subtotal : Number,
+statusChangeHistory : [{
+  status : String,
+  datemodified : {
+    type: Date,
+    default: Date.now
+  }
+
+}]
+
 });
 
 var OrderSchema = new Schema({
   orderNumber: String,
   shipping: Number,
-  tax: Number,
-  taxRate: Number,
-  subTotal: Number,
   totalCost: Number,
   items: [OrderItemSchema],
   customerId: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  shipping : {
-  customerName: String,
-  customerEmail: String,
-  customerAddress: String,
-  customerPhone: String,
-  customerCity: String,
-  customerState: String,
-  customerCountry: String
+  address: {
+    type: Schema.Types.ObjectId,
+    ref: 'Address'
   },
-  payment : {
-      method : String,
-      txn : String
-  },
-  voucher: {
+  vouchers: {
     type: Schema.Types.ObjectId,
     ref: 'Voucher'
-  },
-  delivered: {
-    type: Boolean,
-    default: false
+  },  
+  status: {
+    type: String
   },
   created: {
     type: Date,
     default: Date.now
-  }
-});
+  },
+  delivered: {
+    type: Date,
+    default: Date.now
+  },
+  paid : {
+    type: Boolean,
+    default: false
+  },
+  txn : {
+    type: Schema.Types.ObjectId,
+    ref: 'PaymentSchema'
+  },
+  paidbyVoucher : { type: Number,
+    min: 0,
+    default : 0}
+  });
 
 OrderSchema.plugin(autoIncrement.plugin, {
   model: 'Order',

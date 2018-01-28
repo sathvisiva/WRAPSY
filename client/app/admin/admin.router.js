@@ -67,7 +67,35 @@ angular.module('wrapsy.admin')
   .state('admin.editProduct', {
     url: '/editProduct/{id}',
     templateUrl: 'app/manage-products/manage-products-add.html',
-    controller : 'ManageCategoriesEditCtrl'
+    controller : 'ManageProductsEditCtrl',
+    resolve: {
+      categories: ['Catalog', function(Catalog) {
+        return Catalog.query();
+      }],
+      product: ['Product', '$stateParams', function(Product, $stateParams) {
+        return Product.get({ id: $stateParams.id });
+      }]
+    }
+  })
+  .state('admin.addBlog', {
+    url: '/addBlog',
+    templateUrl: 'app/blog/Add-blog.html',
+    controller : 'AddBlogCtrl'
+  })
+  .state('admin.listBlog', {
+    url: '/listBlog',
+    templateUrl: 'app/blog/blog.html',
+    controller : 'BlogListCtrl'
+  })
+  .state('admin.editBlog', {
+    url: '/editBlog/{id}',
+    templateUrl: 'app/blog/editblog.html',
+    controller : 'BlogEditCtrl'
+  })
+  .state('admin.manageOrders', {
+    url: '/manageOrders',
+    templateUrl: 'app/manage-orders/manageorders.html',
+    controller : 'ManageOrdersCtrl'
   })
   .state('admin.managehome', {
     url: '/managehome',

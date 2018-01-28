@@ -1,18 +1,5 @@
 <navbar></navbar>
-<div class="breadcrumb">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="breadcrumb">
-                    <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
-                    <li class="active">product</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<!--End of Breadcrumbs-->
-<!--Product Details Area Start-->
+<br>
 <div class="product-details">
     <section class="product-details-area">
         <div class="container">
@@ -22,19 +9,24 @@
                     <div class="row">
                         <!-- {{product}} -->
                         <div class="col-lg-5 col-md-5 col-sm-6">
-                           <div class="product-s-l">
+                         <div class="product-s-l">
                             <div class="product-large">
-                                <div class="tab-content">
+                                <div class="tab-content" ng-if = "!product.affiliate">
                                     <div class="tab-pane active in" id="img-1">
-                                        <a href="#"><img alt="" class="zoom_01" src="{{product.images[0]}}"  ></a>
+                                        <a href="#"><img alt="" class="zoom_01" src="{{product.coverimage}}"  ></a>
                                     </div>
                                     <div class="tab-pane" ng-repeat="img in product.images" id="img-{{$index + 2}}" >
-                                        <a href="#"><img alt="" class="zoom_01" src="{{img}}" ></a>
+                                        <a href="#"><img alt="" class="zoom_01" src="{{img.url}}" ></a>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="product-small" ng-if="product.images.length > 0">
-                                <ul class="nav nav-tabs bxslider" role="tablist" bxslider>
+                                <a  ng-if = "product.affiliate" ui-sref="product({id: product.slug})" class="inner">
+                                  <img ng-src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=IN&ASIN={{product.asin}}&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL500__&tag=sathviprasi-21" class="pic" alt="{{product.name}}" data-err-src="images/product.jpg" />
+                                  <!--  <a target="_blank"  href="https://www.amazon.in/gp/product/B0756ZFXVB/ref=as_li_tl?ie=UTF8&camp=3638&creative=24630&creativeASIN=B0756ZFXVB&linkCode=as2&tag=sathviprasi-21&linkId=f58b845c654ce45bf7c8e675dffdea09"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=IN&ASIN=B0756ZFXVB&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sathviprasi-21" ></a><img src="//ir-in.amazon-adsystem.com/e/ir?t=sathviprasi-21&l=am2&o=31&a=B0756ZFXVB" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> -->
+                              </a>
+                          </div>
+                          <div class="product-small" ng-if="product.images.length > 0" ng-hide = "product
+                            .affiliate">
+                            <ul class="nav nav-tabs bxslider" role="tablist" bxslider>
                                   <!--   <li class="active">
                                         <a href="#img-1" data-toggle="tab" my-tab>
                                             <img alt="" src="{{product.images[0]}}">
@@ -42,7 +34,7 @@
                                     </li> -->
                                     <li ng-repeat="img in product.images">
                                         <a ng-href="#img-{{$index + 2}}" data-toggle="tab" my-tab>
-                                            <img alt="" src="{{img}}">
+                                            <img alt="" src="{{img.url}}">
                                         </a>
                                     </li>
                                 </ul>
@@ -87,7 +79,7 @@
                         <div class="product-prices">
 
                           <div class="product-price h5 has-discount">
-                             <div class="current-price">
+                           <div class="current-price">
                               <span itemprop="price" content="32">₹{{product.price | number}}</span>
                           </div>
                       </div>
@@ -99,13 +91,13 @@
                             <div class="clearfix product-variants-item" ng-repeat = "x in product.features" ng-if="x.selectable">
                                 <span class="control-label">{{x.key}}</span>
                                 <select ng-model="feature" class="form-control-select" ng-change="selectedfeature(x.key, feature)">
-                                   <option ng-repeat="k in x.val" value="{{k}}">{{k}}</option>
+                                 <option ng-repeat="k in x.val" value="{{k}}">{{k}}</option>
 
-                               </select>
-                           </div>
+                             </select>
+                         </div>
 
 
-                           <div class="clearfix product-variants-item">
+                         <div class="clearfix product-variants-item">
                             <span class="control-label">Quantity</span>
                             <input type="number" min="1" max={{product.stock}} ng-model= "qty" class="form-control-select qty"/>
                         </div>
@@ -124,18 +116,18 @@
 
                     <div class="pdt-button">
                         <div class="col-md-6">
-                            <button class="btn btn-primary btn-lg pdt-button cart-btn" ng-if="!ngCart.getItemById(product._id) && !product.affiliate" ng-click="addtocart(product, qty)">
-                                Add to cart
+                            <button class="btn btn-primary btn-lg pdt-button cart-btn" ng-if="!ngCart.getItemById(product._id) && !product.affiliate" ng-click="addtocart($event , product, qty)">
+                                ADD TO CART
                             </button>
-                            <a ng-if="product.affiliate" class="btn btn-primary btn-lg pdt-button cart-btn" target="_blank" ng-href = "https://www.amazon.in/gp/product/{{product.prodcode}}/
-                            ref=as_li_tl?ie=UTF8&camp=3638&creative=24630&creativeASIN={{product.prodcode}}&linkCode=as2&tag=sathviprasi-21&linkId={{product.linkId}}linkId">Buy Now </a>
+                            <a ng-if="product.affiliate" class="btn btn-primary btn-lg pdt-button cart-btn" target="_blank" ng-href = "https://www.amazon.in/gp/product/{{product.asin}}/
+                            ref=as_li_tl?ie=UTF8&camp=3638&creative=24630&creativeASIN={{product.asin}}&linkCode=as2&tag=sathviprasi-21&linkId={{product.code}}linkId">BUY NOW</a>
 
                             <a ng-show="ngCart.getItemById(product._id)" class="btn btn-primary btn-lg pdt-button cart-btn" ui-sref="cart-details">View Cart</a>
                         </div>
 
                         <div class="col-md-6">
                             <button class="btn btn-primary btn-lg pdt-button" ng-click="addtoRegistry($event,product,qty,registry.registryId)">
-                                Add to Registry
+                                ADD TO REGISTRY
                             </button>
                             <span class="help-block">{{message}}</span>
                         </div>
@@ -161,20 +153,20 @@
         <ul>
 
             <li class="facebook"><a  class="md-fab md-mini" href="http://www.facebook.com/sharer.php?u={{location.absUrl()}}"
-             title="Share" target="_blank">f</a></li>
-             <li class="twitter"><a href="https://twitter.com/intent/tweet?text=Google Nexus 9 Tablet {{location.absUrl()}}"
-              class="text-hide" title="Tweet" target="_blank">Tweet</a></li>
-              <li class="googleplus"><a href="https://plus.google.com/share?url={{location.absUrl()}}" class="text-hide"
-                  title="Google+" target="_blank">Google+</a></li>
+               title="Share" target="_blank">f</a></li>
+               <li class="twitter"><a href="https://twitter.com/intent/tweet?text=Google Nexus 9 Tablet {{location.absUrl()}}"
+                  class="text-hide" title="Tweet" target="_blank">Tweet</a></li>
+                  <li class="googleplus"><a href="https://plus.google.com/share?url={{location.absUrl()}}" class="text-hide"
+                      title="Google+" target="_blank">Google+</a></li>
 
-              </ul>
+                  </ul>
+              </div>
+
+
           </div>
 
 
       </div>
-
-
-  </div>
                             <!-- <div class="product-right-details">
                                 <div class="product-info">
                                     <h4>{{product.title}}</h4>
@@ -257,11 +249,11 @@
                                   </md-tab>
                                   <md-tab label="Shipping">
                                     <md-content class="md-padding">
-                                       <p>Shipped by the seller.</p>
+                                     <p>Shipped by the seller.</p>
 
-                                   </md-content>
-                               </md-tab>
-                               <md-tab label="Ratings & Reviews">
+                                 </md-content>
+                             </md-tab>
+                             <md-tab label="Ratings & Reviews">
                                 <md-content class="md-padding">
 
                                   <h4 class="md-display-6 text-center"><span>Have you used this Product? <md-button class="md-raised md-accent" ng-click="addrating = true">Review</md-button></span></h4>
@@ -333,7 +325,7 @@
                                           </div>
                                           <div class="col-md-9">
                                             <div class="review-left">
-                                             <div class="rating">
+                                               <div class="rating">
                                                 <i class="fa fa-star" ng-class="{'grey': review.rating < 1}"></i>
                                                 <i class="fa fa-star" ng-class="{'grey': review.rating < 2}"></i>
                                                 <i class="fa fa-star" ng-class="{'grey': review.rating < 3}"></i>
@@ -355,16 +347,20 @@
                     </md-tab>
                     <md-tab label="Features">
                         <md-content class="md-padding">
-                           <p>Shipped by the seller.</p>
 
-                       </md-content>
-                   </md-tab>
-               </md-tabs>
-           </md-content>
-       </div>
-   </div>
+                        <div class="row"  ng-repeat = "x in product.features" ng-if="!x.selectable" >
+                              <div class="col-md-4">{{x.key}}</div>
+                              <div class="col-md-4">{{x.val.join()}}</div>
+                          </div>
 
-   <div class="category-title-header" style="margin-top: 50px;">
+                      </md-content>
+                  </md-tab>
+              </md-tabs>
+          </md-content>
+      </div>
+  </div>
+
+  <div class="category-title-header" style="margin-top: 50px;">
 
     <div class="title-center">
         <div class="title"><h1 class="ng-binding">Products You May Like</h1></div>
@@ -401,25 +397,25 @@
 
     </div>
 </div> -->
-   <div class="product-list" >
-          <div class="col-md-3 col-sm-6 col-xs-6 item" ng-repeat="product in relatedProducts| limitTo:4">
-            <div class="product-item">
-              <div class="pic-wrapper">
-                <a ui-sref="product({id: product.slug})" class="inner">
-                  <img ng-src="{{product.images[0]}}" alt="" class="pic" />
-                </a>
-                <a  ng-if = "product.affiliate" ui-sref="product({id: product.slug})" class="inner">
-                  <img ng-src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=IN&ASIN={{product.prodcode}}&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL160_&tag=sathviprasi-21" class="pic" alt="{{product.name}}" data-err-src="images/product.jpg" />
-                </a>
-              </div>
-              <div class="product-desc">
-                <h2 class="name"><a ui-sref="product({id: product.slug})" >{{product.title}}</a></h2>
-                <div class="price">₹{{product.price}}</div>
-              </div>
-              <span class="sale">sale</span>
-            </div>
-          </div>          
-        </div>
+<div class="product-list" >
+  <div class="col-md-3 col-sm-6 col-xs-6 item" ng-repeat="product in relatedProducts| limitTo:4">
+    <div class="product-item">
+      <div class="pic-wrapper">
+        <a ui-sref="product({id: product.slug})" class="inner">
+          <img ng-src="{{product.coverimage}}" alt="" class="pic" />
+      </a>
+      <a  ng-if = "product.affiliate" ui-sref="product({id: product.slug})" class="inner">
+          <img ng-src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=IN&ASIN={{product.asin}}&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sathviprasi-21" class="pic" alt="{{product.name}}" data-err-src="images/product.jpg" />
+      </a>
+  </div>
+  <div class="product-desc">
+    <h2 class="name"><a ui-sref="product({id: product.slug})" >{{product.title}}</a></h2>
+    <div class="price">₹{{product.price}}</div>
+</div>
+<span class="sale">sale</span>
+</div>
+</div>          
+</div>
 
 
 

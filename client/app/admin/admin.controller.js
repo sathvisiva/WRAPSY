@@ -56,26 +56,71 @@ angular.module('wrapsy')
     },
     sidenav: {
       sections: [{
-        name: 'Section 1',
-        expand: true,
-        actions: [{
-          name: 'Action 1',
-          icon: 'settings',
-          link: 'Action 1'
-        }, {
-          name: 'Action 2',
-          icon: 'settings',
-          link: 'Action 2'
-        }]
-      }, {
-        name: 'Section 2',
+        name: 'Vendors',
+        expandable : true,
         expand: false,
         actions: [{
-          name: 'Action 3',
-          icon: 'settings',
-          link: 'Action 3'
+          name: 'Vendors List',
+          state: 'admin.vendors'
+        },
+        {
+          name: 'Add Vendor',
+          state: 'admin.newvendor'
         }]
-      }, {
+      }, 
+      {
+        name: 'Features',
+        expandable : true,
+        expand: false,
+        actions: [{
+          name: 'Features List',
+          state: 'admin.feature'
+        }]
+      },
+      {
+        name: 'Filters',
+        expandable : true,
+        expand: false,
+        actions: [{
+          name: 'Filters List',
+          state: 'admin.filter'
+        }]
+      },
+      {
+        name: 'Categories',
+        expandable : true,
+        expand: false,
+        actions: [{
+          name: 'Categories List',
+          state: 'admin.categories'
+        },{
+          name: 'Add Category',
+          state: 'admin.newcategory'
+        }]
+      }
+      ,
+      {
+        name: 'Products',
+        expandable : true,
+        expand: false,
+        actions: [{
+          name: 'Products List',
+          state: 'admin.products'
+        },{
+          name: 'Add Product',
+          state: 'admin.newProduct'
+        }]
+      },
+      {
+        name: 'Orders',
+        expandable : true,
+        expand: false,
+        actions: [{
+          name: 'Manage Orders',
+          state: 'admin.manageOrders'
+        }]
+      },
+      {
         name: 'Section 3',
         expand: false,
         actions: [{

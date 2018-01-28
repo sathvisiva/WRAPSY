@@ -90,3 +90,51 @@ angular.module('wrapsy')
 
 	}
 	])
+
+angular.module('wrapsy')
+.controller('VoucherListCtrl', function ($scope,$mdDialog,$mdMedia,Auth,Voucher,$http,Payment) {
+
+	this.getCurrentUser = Auth.getCurrentUser;
+	console.log(this.getCurrentUser());
+
+	var q = {where:{email:Auth.getCurrentUser().email, paid : true }};
+	$scope.vouchers =  Voucher.query(q);
+	console.log($scope.vouchers)
+
+	
+});
+angular.module('wrapsy')
+.controller('VoucherRedeemCtrl',function ($scope,$rootScope,$state, $stateParams,Registry,Auth,$location, $uibModalInstance, Voucher,amount) {
+
+
+	$scope.cancel = function () {
+		$uibModalInstance.dismiss('Close');
+	};
+	$scope.ok = function () {
+		$scope.errormessage = '';
+		$scope.voucher = {};
+		$scope.voucher.code = $scope.voucherCode;
+		$scope.voucher.amount = amount;
+		Voucher.redeem($scope.voucher, function(resp){
+			if(resp.errorcode == 0 ){
+				$scope.errormessage = "Sorry, Voucher already redeemed";
+			}else if(resp.errorcode == 1){
+				$scope.errormessage = "Sorry, Voucher validity expired";
+			}else if(resp.errorcode == 2){
+				$scope.errormessage = "Sorry, Voucher amount is greater than cart amount";
+			}else if(resp.errorcode == 3){
+				$scope.errormessage = "Sorry, Invalid voucher code";
+			}
+			else{
+				/*console.log(resp);
+				$scope.voucher.code = resp.code;
+				$scope.voucher.amount = resp.amount;
+				$scope.voucher.id _ resp._id*/
+
+				$uibModalInstance.close(resp);	
+			}
+		});
+		
+	};
+
+});

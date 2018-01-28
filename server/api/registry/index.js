@@ -23,6 +23,7 @@ router.get('/:id/accomodation', controller.indexAccomodation );
 router.post('/:id/contribution', controller.createContribution  );
 router.get('/:id/contribution', controller.indexContribution  );
 router.put('/:id', controller.update);
+router.put('/:slug/updateProfilepic', controller.updateProfilepic);
 router.patch('/:id', controller.update);
 router.delete('/:id',  controller.destroy);
 router.get('/search/:term', controller.search);

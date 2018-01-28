@@ -12,6 +12,12 @@ angular.module('wrapsy')
         params: {
           controller: 'myrequests'
         }
+      },
+       'deleteImage': {
+        method: 'POST',
+        params: {
+          controller: 'deleteImage'
+        }
       }
     });
   });

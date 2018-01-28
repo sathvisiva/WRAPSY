@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('wrapsy')
-.controller('ProductCtrl', ['$scope', '$stateParams', '$state', 'Product', 'Registry','$rootScope','ngCart','Auth','toaster','$mdDialog','$timeout','Cart',
-  function($scope, $stateParams, $state, Product, Registry, $rootScope, ngCart,Auth, toaster,$mdDialog, $timeout,Cart) {
+.controller('ProductCtrl', ['$scope', '$stateParams', '$state', 'Product', 'Registry','$rootScope','Auth','AlertService','$mdDialog','$timeout','Cart', '$uibModal',
+  function($scope, $stateParams, $state, Product, Registry, $rootScope,Auth, AlertService,$mdDialog, $timeout,Cart, $uibModal) {
 
       //Get product and fetch related products based on category
       $scope.product = Product.get({ id: $stateParams.id }, function(p) {
@@ -68,6 +68,8 @@ angular.module('wrapsy')
         if(!Auth.isLoggedIn()){
          $scope.data = {'event' : 'login'};
          $scope.login(ev, $scope.data);
+         var q = {where:{username:Auth.getCurrentUser().email}};
+         $scope.registryOptions =  Registry.query(q);
        }else{
         if($scope.registryOptions && $scope.registryOptions.length <1 || !$scope.registryOptions){
           /*$scope.message = "No Registry found. Please create Registry";*/
@@ -115,8 +117,7 @@ angular.module('wrapsy')
    $scope.products.linkId = product.linkId;
    $scope.products.affiliate = product.affiliate;
    $scope.products.multiple = multiple;
-   $scope.products.color = product.color;
-   $scope.products.size = product.size;
+   $scope.products.feature = feature;
    if(multiple){
     $scope.products.price = $scope.products.price * qty;
   }
@@ -145,17 +146,34 @@ angular.module('wrapsy')
 }
 
 var items = {};
-$scope.addtocart = function(product, qty){
+$scope.addtocart = function(ev,product, qty){
   items.quantity = qty;
-  items.features = feature
-  items.products = product._id
-  console.log(items.products)
+  items.features = feature;
+  items.products = product._id;
+  var gst = (parseInt(product.gst) * 0.01 * parseInt(product.price)) + parseInt(product.price);
+  items.subtotal = parseInt(qty) * gst;
 
-  Cart.addTocart({id : Auth.getCurrentUser()._id},items,function(res){
-    console.log(res)
-  }, function(err) {
-    console.log(err)
-  });
+  if($scope.isLoggedIn()){
+    Cart.addTocart({id : Auth.getCurrentUser()._id},items,function(res){
+      console.log(res.status)
+      var modalInstance = $uibModal.open({
+        templateUrl : 'app/cart/cart.html',
+        controller: 'CartCtrl',
+        size :'lg'
+      })
+    }, function(err) {
+      console.log(err)
+      var title = "Sorry product cannot be added to Cart" 
+      AlertService.showAlert(err.data)
+    });
+  }else{
+    $scope.data = {'state' : 'cart' , 'event' : 'login' , 'items' : items };
+    $scope.login(ev, $scope.data);
+  }
+
+
+
+
 
 
 /*  Cart.alterpdtQuantity({id : Auth.getCurrentUser()._id},items,function(res){

@@ -24,6 +24,8 @@
   app.use('/api/voucher', require('./api/voucher'));
   app.use('/api/registry', require('./api/registry'));
   app.use('/api/home', require('./api/home'));
+  app.use('/api/address', require('./api/address'));
+  app.use('/api/blog', require('./api/blog'));
 
 
   app.use('/auth', require('./auth'));

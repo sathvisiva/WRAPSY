@@ -7,7 +7,7 @@ class NavbarController {
   isCollapsed = true;
   //end-non-standard
 
-  constructor(Auth, Catalog, $scope, $mdDialog, $state, $stateParams, $mdMedia,NavbarService) {
+  constructor(Auth, Catalog, $scope, $mdDialog, $state, $stateParams, $mdMedia,NavbarService,$uibModal, $mdSidenav) {
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
@@ -21,6 +21,12 @@ class NavbarController {
       }else{
         $scope.showSearch = true;
       }
+    }
+
+
+    $scope.toggle = function(){
+
+      $mdSidenav('right').toggle();
     }
 
     $scope.getcategories = function(parentid){
@@ -112,7 +118,7 @@ class NavbarController {
       $scope.showsusubtree = ! $scope.showsusubtree;
     }
 
-    $scope.openNav = function(){
+  /*  $scope.openNav = function(){
       console.log("inside openNav");
       document.getElementById("mySidenav").style.width = "250px";
     }
@@ -120,15 +126,30 @@ class NavbarController {
     $scope.closeNav = function(){
       console.log("inside closenav");
       document.getElementById("mySidenav").style.width = "0";
+    }*/
+
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
     }
 
-    /*function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-    }*/
-/*
     function closeNav() {
       document.getElementById("mySidenav").style.width = "0";
-    }*/
+    }
+
+    $scope.openCart = function(ev){
+      if($scope.isLoggedIn()){
+        var modalInstance = $uibModal.open({
+          templateUrl : 'app/cart/cart.html',
+          controller: 'CartCtrl',
+          size :'lg'
+        })
+      }else{
+        $scope.data = {'state' : 'cart' , 'event' : 'login'};
+        $scope.login(ev, $scope.data);
+      }
+
+      /* */
+    }
 
 
     $scope.createRegistry = function(ev){
@@ -161,7 +182,7 @@ class NavbarController {
       });
     }
 
-    
+
   }
 
 

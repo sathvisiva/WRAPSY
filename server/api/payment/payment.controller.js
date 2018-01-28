@@ -15,10 +15,10 @@
  var cc = require('coupon-code');
  var Voucher = require('../voucher/voucher.model');
  var mail = require('../mail/sendmail');
- /*var Order = require('../order/order.model');
+ var Order = require('../order/order.model');
  var Registry = require('../registry/registry.model').registry;
  var Contribution = require('../registry/registry.model').contribution
- var Registrycontroller = require('../registry/registry.controller');*/
+ var Registrycontroller = require('../registry/registry.controller');
 
  function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -93,6 +93,83 @@ export function giftSuccessPaymentStatus(req, res) {
       handleError(payment)
     }
 
+    Voucher.findByIdAsync(payment.productinfo )
+    .then(function(voucher) {
+      voucher.paid = true;
+      voucher.txn = payment._id;
+      voucher.saveAsync();
+      var date = new Date(voucher.validuntil);
+        var year = date.getFullYear();
+        var month = date.getMonth()+1;
+        var dt = date.getDate();
+
+        if (dt < 10) {
+          dt = '0' + dt;
+        }
+        if (month < 10) {
+          month = '0' + month;
+        }
+
+        var fulldate = year+'-' + month + '-'+dt
+
+
+        if(err) { return handleError(err); }
+        let voucherdetails = [
+        {
+          'email': 'sathvi.prasi@gmail.com',//voucher.email,
+          'amount': voucher.amount,
+          'vouchercode': voucher.code,
+          'validuntil' : fulldate
+        }
+        ];
+
+        console.log(voucherdetails);
+        mail.sendmail('voucher',voucherdetails);s
+    })
+    .then(function(voucher){
+      /*var date = new Date(voucher.validuntil);
+        var year = date.getFullYear();
+        var month = date.getMonth()+1;
+        var dt = date.getDate();
+
+        if (dt < 10) {
+          dt = '0' + dt;
+        }
+        if (month < 10) {
+          month = '0' + month;
+        }
+
+        var fulldate = year+'-' + month + '-'+dt
+
+
+        if(err) { return handleError(err); }
+        let voucherdetails = [
+        {
+          'email': 'sathvi.prasi@gmail.com',//voucher.email,
+          'amount': voucher.amount,
+          'vouchercode': voucher.code,
+          'validuntil' : fulldate
+        }
+        ];
+
+        console.log(voucherdetails);
+        mail.sendmail('voucher',voucherdetails);*/
+    });    
+    res.redirect('/myvouchers');
+  });
+}
+
+
+
+
+
+
+
+/*  Payment.create(req.body, function(err, payment){
+    if(err){
+      handleError(payment)
+    }
+
     Voucher.update({ _id: req.body.productinfo }, { $set: { paid: true,  paymentId: payment._id }}, function (err, voucher) {
       if (err) {
         handleError(err)
@@ -113,7 +190,7 @@ export function giftSuccessPaymentStatus(req, res) {
         }
 
         var fulldate = year+'-' + month + '-'+dt
-    
+
 
         if(err) { return handleError(err); }
         let voucherdetails = [
@@ -134,7 +211,7 @@ export function giftSuccessPaymentStatus(req, res) {
 
       res.redirect('/myvouchers');
     });
-  });
+  });*/
 
 
   
@@ -142,7 +219,7 @@ export function giftSuccessPaymentStatus(req, res) {
 
 
   
-}
+
 
 export function giftFilurePaymentStatus(req, res){
 
@@ -150,7 +227,25 @@ export function giftFilurePaymentStatus(req, res){
   console.log(req);
   console.log(req.body);
 
-  Voucher.update({ _id: req.body.productinfo }, { $set: { paid: false }}, function (err, voucher) {
+  Payment.create(req.body, function(err, payment){
+    if(err){
+      handleError(payment)
+    }
+
+    Voucher.findByIdAsync(payment.productinfo )
+    .then(function(voucher) {
+      voucher.paid = false;
+      voucher.txn = payment._id;
+      voucher.saveAsync();
+    });    
+    res.redirect('/myvouchers');
+  });
+
+}
+
+
+
+/*  Voucher.update({ _id: req.body.productinfo }, { $set: { paid: false ,  }}, function (err, voucher) {
     if (err) {
       responseObject.err = err;
       responseObject.data = null;
@@ -159,61 +254,50 @@ export function giftFilurePaymentStatus(req, res){
       return res.json(responseObject);
     }
 
-    res.redirect('/cart');
-  });
-
-}
+    res.redirect('/myvouchers');
+  });*/
 
 
-export function pdtPaymentSuccess(req, res) {
-  Order.update({ _id: req.body.productinfo }, { $set: { paid: true }}, function (err, order) {
-    if (err) {
-      responseObject.err = err;
-      responseObject.data = null;
-      responseObject.code = 422;
 
-      return res.json(responseObject);
-    }   
+/*export function pdtPaymentStatus(req, res) {
 
+  Payment.create(req.body, function(err, payment){
+    if(err){
+      handleError(payment)
+    }
+
+    Order.findByIdAsync(payment.productinfo )
+    .then(function(order) {
+      order.paid = true;
+      order.txn = payment._id;
+      order.saveAsync();
+    });    
     res.redirect('/orders');
-  });
+  }
 }
+*/
 
-export function pdtPaymentFailure(req, res) {
-    
-  Order.findById(req.body.productinfo, function(order){
-  if(order){
- 
-  Order.update({ _id: req.body.productinfo }, { $set: { paid: false }}, function (err, order) {
-    if (err) {
-      responseObject.err = err;
-      responseObject.data = null;
-      responseObject.code = 422;
+export function pdtPaymentStatus(req,res){
+  Payment.createAsync(req.body)
+  .then(payment => {
+    if (payment) {
+      Order.findByIdAsync(payment.productinfo )
+      .then(function(order) {
+        order.paid = true
+        order.txn = payment._id
+        order.saveAsync();
+      });
 
-      return res.json(responseObject);
-    }   
-
-    res.redirect('/orders');
-  });
-  
-  if(order.voucher && order.voucher != null){
-      Voucher.update({ 'code' : order.voucher }, { $set: { redeemed: true }}, function (err, resp) {
-          if (err) {
-            resp.err = err;
-            resp.data = null;
-            resp.code = 422;
-
-            return res.json(responseObject);
-          }
-          console.log(voucher);
-        
-        });
-  }
-  }
+      res.redirect('/orders');
+    }
   })
+  .catch(handleError(res));
 }
 
-export function contributionSucessStatus(req, res) {
+
+
+
+export function contributionStatus(req, res) {
   console.log('payment success');
   console.log(req.body);
   console.log(JSON.stringify(req.body.productinfo));
@@ -247,43 +331,16 @@ export function contributionSucessStatus(req, res) {
   Registry.update(query, increment, function(err,registry){
     console.log(registry);
   });
- }
- 
- export function contributionFailureStatus(req, res) {
-  console.log('payment success');
-  console.log(req.body);
-  console.log(JSON.stringify(req.body.productinfo));
-  var str = JSON.stringify(req.body.productinfo);
-  var productInfo = str.split(" ");
-  var contribution = {}
-  contribution.productId = productInfo[0].slice(1);
-  contribution.contribution = productInfo[1];
-  contribution.registryId = productInfo[2];
-  contribution.name = productInfo[3];
-  Contribution.create(contribution, function(err, registry) {
-    if(err) { return handleError(res, err); }
-    
-  });
 
-  console.log(contribution.contribution);
-  console.log(contribution.registryId);
-  console.log(contribution.productId);
+  res.redirect('/myvouchers');
 
-  var increment = {
-    $inc: {
-      'products.$.paid': parseInt(contribution.contribution)
-    }
-  };
-  var query = {
-    '_id': contribution.registryId.toString(),
-    'products._id': contribution.productId.toString()
 
-  };
+}
 
-  Registry.update(query, increment, function(err,registry){
-    console.log(registry);
-  });
- }
+export function contributionFailureStatus(req, res) {
+  res.redirect('/myvouchers');
+
+}
 
   // Gets a list of Vouchers
   export function index(req, res) {

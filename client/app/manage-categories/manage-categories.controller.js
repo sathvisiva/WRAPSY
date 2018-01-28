@@ -78,8 +78,8 @@ angular.module('wrapsy')
 }
 ])
 
-.controller('ManageCategoriesAddCtrl', ['$scope', '$state', 'Catalog', '$stateParams','Filter','Upload',
-  function($scope, $state, Catalog, $stateParams,Filter,Upload) {
+.controller('ManageCategoriesAddCtrl', ['$scope', '$state', 'Catalog', '$stateParams','Filter','Upload','UploadImage',
+  function($scope, $state, Catalog, $stateParams,Filter,Upload,UploadImage) {
 
     Catalog.query(function(categories) {
       $scope.categories = categories;
@@ -106,6 +106,14 @@ angular.module('wrapsy')
             // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
           });
       };
+    }
+
+    $scope.removeImage = function(imageUrl){
+      var query = {};
+      query.url = $scope.category.imageUrl
+      UploadImage.query(query ,function(res){
+        console.log(res)
+      })
     }
 
     Filter.query(function(data) {

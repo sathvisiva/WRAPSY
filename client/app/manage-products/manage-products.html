@@ -99,12 +99,12 @@
                 <td class="text-center">{{p.title}}</td>
                 <td class="text-center">₹{{p.price | number}}</td>
                 <td class="text-center">{{p.stock}}</td>
-                <td class="text-center">{{p.vendor[0].name}}</td>
-                <td class="text-center"><span ng-repeat="cat in p.categories">{{cat.name}}{{p.categories.length - 1 > $index ? ',&nbsp;' : ''}}</span></td>
+                <td class="text-center">{{p.vendor.name}}</td>
+                <td class="text-center">{{p.categories.name}}</td>
                 <td class="text-center"><md-switch ng-model="p.featured" aria-label="featured product" ng-change="featuredProducts(p.featured,p._id,p)" >
                 </md-switch></td>
                 <td class="text-center"> 
-                    <a ui-sref="admin.editvendor({id: f._id})" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i></a>
+                    <a ui-sref="admin.editProduct({id: p.slug})" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i></a>
                     <a ng-click="deleteProduct('Product ' + p.title, p)" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i></a>
                 </td>
             </tr>

@@ -74,7 +74,9 @@ export function index(req, res) {
 
 // Gets a single Order from the DB
 export function show(req, res) {
-  Cart.findByIdAsync(req.params.id)
+  console.log(req.params.id);
+  Cart.findById(req.params.id).populate('items.products').populate('vouchers')
+  .execAsync()
   .then(handleEntityNotFound(res))
   .then(responseWithResult(res))
   .catch(handleError(res));
@@ -106,6 +108,46 @@ export function create(req, res) {
 
   export function modifyCart(req,res){
 
+    Cart.update( 
+      { _id: req.params.id },
+      { $pull: { items : { products : req.body.product } } },
+      { safe: true },
+      function(err, obj) {
+        if(err){
+          res.status(500).end();
+        }
+        Product.findByIdAsync(req.body.product)
+        .then(function(product) {
+          product.stock += parseInt(req.body.qty);
+          product.saveAsync();
+        });
+        res.status(204).end();
+      });
+
+
+  }
+
+
+  export function clearCart(req, res){
+
+
+
+    Cart.findById(req.params.id)
+    .execAsync()
+    .then(function(cart){
+      console.log(cart.items.length)
+      var i = cart.items.length
+      while (i--) {
+        var task = cart.items[i]
+          cart.items.remove(task); // or just task.remove()
+
+        }
+        cart.saveAsync()   
+      })
+    .then(() => {
+      res.status(204).end();
+    })
+    .catch(handleError(res));
   }
 
 // Updates an existing Order in the DB
@@ -130,24 +172,8 @@ export function destroy(req, res) {
 
 export function alterpdtQuantity(req,res){
 
-  console.log(req.body)
-  Cart.find({_id : req.params.id , "items.product" : req.body.product},function(err,cart){
-    console.log(cart)
- /*   for(var i =0 ; i < cart.items.length; i++){
-      if(cart.items[i].product == req.body.product){
-        var oldQuantity = cart.items[i].quantity;
-      }
-    }
-
-    var newQuantity = req.body.quantity;
-    var delta = newQuantity - oldQuantity;*/
-/*
-    var update = {
-      $inc: {
-        'products.$.paid': parseInt(contribution.contribution)
-      }
-    };*/
-
+  console.log(req.body.product)
+  Cart.find({_id : req.params.id , "items.products" : req.body.product},function(err,cart){
     var increment = {
       $set: {
         'items.$.quantity': parseInt(req.body.quantity)
@@ -156,25 +182,13 @@ export function alterpdtQuantity(req,res){
 
     var query = {
       '_id': req.params.id,
-      'items.product': req.body.product
+      'items.products': req.body.product
 
     };
 
     Cart.update(query, increment, function(err,registry){
-      console.log(registry);
+      res.status(204).end();
     });
-
-   /* Cart.update({
-      _id: req.params.id
-      , "items.product": 
-      
-    }, {
-      $set: {
-        "items.$.quantity": newQuantity
-      }
-    });*/
-
-
   })
 }
 
@@ -192,8 +206,6 @@ exports.addToCart = function(req,res){
     }else{
 
       if(!cart.items){
-        console.log("inside if")
-        console.log(cart.items)
         cart.items = []
         cart.items.push(req.body);
         return cart.saveAsync()
@@ -202,8 +214,7 @@ exports.addToCart = function(req,res){
         })
         
       }else if(cart.items){
-        console.log("inside else if")
-        console.log(cart.items)
+
         for(var i =0 ; i < cart.items.length; i++){
           console.log(cart.items[i].products)
           console.log(req.body.products)

@@ -35,6 +35,42 @@ angular.module('wrapsy')
     }
   });
 })
+.factory('UploadImage', function($resource) {
+  return $resource('/api/uploads/:id/:controller', {
+    id: '@_id'
+  }, {
+    'des': {
+      method: 'POST',
+      params: {
+        controller: 'des'
+      }        
+    }
+  });
+})
+.factory('Blog', function ($resource) {
+  return $resource('api/blog/:id/:controller', {
+    id: '@_id'
+  }, {
+    update: {
+      method: 'PUT'
+    },
+    'comment': {
+      method: 'POST',
+      params: {
+        controller: 'comment',
+        limit: null
+      }
+    },
+    'comments': {
+      method: 'GET',
+      isArray: true,
+      params: {
+        controller: 'comments',
+        limit: null
+      }
+    },
+  });
+})
 .factory('Home', function($resource) {
   return $resource('/api/home/:id/:controller', {
     id: '@_id'
@@ -194,6 +230,13 @@ angular.module('wrapsy')
         limit: null
       }
     },
+    'updateProfilepic'  : {
+      method : 'PUT',
+      params : {
+        controller : 'updateProfilepic',
+        limit : null
+      }
+    },
     'updatePdtcnt': {
       method: 'POST',
       params: {
@@ -251,6 +294,25 @@ angular.module('wrapsy')
       method: 'PUT',
       params: {
         controller: 'alterpdtQuantity'
+      }
+    },
+    'modifyCart' : {
+      method: 'PUT',
+      params: {
+        controller: 'modifyCart'
+      }
+    },
+    'clearCart' : {
+      method: 'PUT',
+      params: {
+        controller: 'clearCart'
+      }
+    },
+    'show': {
+      method: 'GET',
+      isArray: false,
+      params: {
+        controller: 'show'
       }
     },
     'addTocart' : {
@@ -418,6 +480,26 @@ angular.module('wrapsy').service('NavbarService', function ($http, Catalog) {
   return {
     createnav: function createnav() {
       return tree;
+    }
+  };
+});
+
+angular.module('wrapsy').service('AlertService', function ($http, $mdDialog) {
+
+
+  return {
+    showAlert: function showAlert(title , content) {
+      $mdDialog.show(
+        $mdDialog.alert()
+        .clickOutsideToClose(true)
+        .title(title)
+        .textContent(content)
+        .ok('Ok')
+        // You can specify either sting with query selector
+        .openFrom('#left')
+        // or an element
+        .closeTo(angular.element(document.querySelector('#right')))
+        );
     }
   };
 });

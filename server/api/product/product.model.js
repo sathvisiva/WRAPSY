@@ -82,6 +82,11 @@ var ProductSchema = new Schema({
     required: true,
     min: 0
   },
+  gst : {
+    type : Number,
+    default : 0
+  },
+  coverimage : String,
   discount : {
     type: Number,
     min: 0
@@ -94,9 +99,6 @@ var ProductSchema = new Schema({
     type: Boolean,
     default: false
   },
-  imageUrl: {
-    type: String
-  },
   shortdescription : String,
   description: String,
   features : [{
@@ -107,22 +109,28 @@ var ProductSchema = new Schema({
       default: false
     }
   }],
-  vendor : [{
+  vendor : {
     type: Schema.Types.ObjectId,
     ref: 'Vendor',
     index: true
+  },
+  images: [{
+    url : String,
+    cover : {
+      type: Boolean,
+      default: false
+    }
   }],
-  images: [],
   reviews: [{
     type: Schema.Types.ObjectId,
     ref: 'Review',
     index: true
   }],
-  categories: [{
+  categories: {
     type: Schema.Types.ObjectId,
     ref: 'Catalog',
     index: true
-  }]
+  }
 }).index({
   'title': 'text',
   'description': 'text'

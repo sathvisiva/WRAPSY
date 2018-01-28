@@ -14,16 +14,17 @@
 
       <md-list ng-repeat="section in data.sidenav.sections">
         <md-list-item ng-click="section.expand = !section.expand">
-          <p class="md-subheader md-primary">{{section.name}}</p>
+        <a class="md-subheader md-primary">{{section.name}}</a>
           <span flex></span>
           <!-- <md-icon class="md-primary md-icon-button">{{section.expand ? 'arrow_drop_up' : 'arrow_drop_down'}}</md-icon> -->
-          <md-icon class=" inherit-color md-cyan-theme md-font material-icons fa fa-chevron-up md-primary md-icon-button" md-font-icon="fa-chevron-up" aria-hidden="true"></md-icon>
+          <md-icon class=" inherit-color md-cyan-theme md-font material-icons fa fa-chevron-up md-primary md-icon-button" md-font-icon="fa-chevron-up" aria-hidden="true" ng-if="section.expandable && section.expand"></md-icon> 
+           <md-icon class=" inherit-color md-cyan-theme md-font material-icons fa fa-chevron-down md-primary md-icon-button" md-font-icon="fa-chevron-up" aria-hidden="true" ng-if="section.expandable && !section.expand"></md-icon> 
         </md-list-item>
-        <md-list-item ng-show="section.expand" ng-repeat="action in section.actions" ng-click="toast(action.link)">
+        <md-list-item ng-show="section.expand" ui-sref="{{action.state}}" ng-repeat="action in section.actions">
 
-          <p class="md-body-2">{{action.name}}</p>
+          <a class="md-body-2 cursorpointer" >{{action.name}} </a>
           <span flex></span>
-          <md-icon class="inherit-color md-cyan-theme md-font material-icons fa fa-chevron-right md-primary md-icon-button" md-font-icon="fa-chevron-right" aria-hidden="true"></md-icon>
+
         </md-list-item>
       </md-content>
     </md-sidenav>
@@ -55,7 +56,7 @@
         </div>
       </md-toolbar>
       <section id="content" role="content" layout="column" layout-padding md-scroll-y>
-      
+
 
         <div id="form-views" ui-view></div>        
       </section>

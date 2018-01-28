@@ -12,56 +12,58 @@
 		</div>
 	</div>
 
+	<div class="container">
 
-	<div class="registries">
-		<div class="row">
-			<div class="col-md-4 registrytype" ui-sref="createregistry({type : 'house'})">
-				<img src="/assets/img/housewarming.jpg" class="img-thumbnail image " alt="Cinque Terre" >
-				<div class="middle">
-					<md-button class="md-accent md-raised" >House Warming Registry</md-button>
-				</div>
-			</div>
-
-			<div class="col-md-4 registrytype " ui-sref="createregistry({type : 'wedding'})">
-				<img src="/assets/img/weddingicon.jpg" class="img-thumbnail image " alt="Cinque Terre" >
-				<div class="middle">
-					<md-button class="md-accent md-raised" >Wedding Registry</md-button>
+		<div class="registries">
+			<div class="row">
+				<div class="col-md-4 registrytype" ui-sref="createregistry({type : 'house'})">
+					<img src="/assets/img/housewarming.jpg" class="img-thumbnail image " alt="Cinque Terre" >
+					<div class="middle">
+						<md-button class="md-accent md-raised" >House Warming Registry</md-button>
+					</div>
 				</div>
 
-			</div>
-			<div class="col-md-4 registrytype" ui-sref="createregistry({type : 'anniversary'})">
-				<img src="/assets/img/anniversary.jpg" class="img-thumbnail image " alt="Cinque Terre" >
-				<div class="middle">
-					<md-button class="md-accent md-raised">Anniversary Registry</md-button>
-				</div>
+				<div class="col-md-4 registrytype " ui-sref="createregistry({type : 'wedding'})">
+					<img src="/assets/img/weddingicon.jpg" class="img-thumbnail image " alt="Cinque Terre" >
+					<div class="middle">
+						<md-button class="md-accent md-raised" >Wedding Registry</md-button>
+					</div>
 
+				</div>
+				<div class="col-md-4 registrytype" ui-sref="createregistry({type : 'anniversary'})">
+					<img src="/assets/img/anniversary.jpg" class="img-thumbnail image " alt="Cinque Terre" >
+					<div class="middle">
+						<md-button class="md-accent md-raised">Anniversary Registry</md-button>
+					</div>
+
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="registries">
-		<div class="row">
-			<div class="col-md-4 registrytype " ui-sref="createregistry({type : 'baby'})">
-				<img src="/assets/img/babyregistry.jpg" class="img-thumbnail image" alt="Cinque Terre">
-				<div class="middle">
-					<md-button class="md-accent md-raised">Baby Shower Registry</md-button>
+		<div class="registries">
+			<div class="row">
+				<div class="col-md-4 registrytype " ui-sref="createregistry({type : 'baby'})">
+					<img src="/assets/img/babyregistry.jpg" class="img-thumbnail image" alt="Cinque Terre">
+					<div class="middle">
+						<md-button class="md-accent md-raised">Baby Shower Registry</md-button>
+					</div>
+
+				</div>
+				<div class="col-md-4 registrytype " ui-sref="createregistry({type : 'bithday'})">
+					<img src="/assets/img/birthdayreg.jpg" class="img-thumbnail image " alt="Cinque Terre" >
+					<div class="middle">
+						<md-button class="md-accent md-raised" ng-click="eventType('bithday')">Birthday Registry</md-button>
+					</div>
+
+				</div>
+				<div class="col-md-4 registrytype " ui-sref="createregistry({type : 'other'})">
+					<img src="/assets/img/otherregistry.jpg" class="img-thumbnail image " alt="Cinque Terre" >
+					<div class="middle">
+						<md-button class="md-accent md-raised" ng-click="eventType('other')">Other Registry</md-button>
+					</div>
+
 				</div>
 
 			</div>
-			<div class="col-md-4 registrytype " ui-sref="createregistry({type : 'bithday'})">
-				<img src="/assets/img/birthdayreg.jpg" class="img-thumbnail image " alt="Cinque Terre" >
-				<div class="middle">
-					<md-button class="md-accent md-raised" ng-click="eventType('bithday')">Birthday Registry</md-button>
-				</div>
-
-			</div>
-			<div class="col-md-4 registrytype " ui-sref="createregistry({type : 'other'})">
-				<img src="/assets/img/otherregistry.jpg" class="img-thumbnail image " alt="Cinque Terre" >
-				<div class="middle">
-					<md-button class="md-accent md-raised" ng-click="eventType('other')">Other Registry</md-button>
-				</div>
-
-			</div>
-
 		</div>
 	</div>
 </section>

@@ -43,7 +43,7 @@
         <img ng-show="form.imageUrl.$valid" ngf-thumbnail="imageUrl" class="thumb">
         <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
         <div ng-show="imageUrl" class="remove-btn">
-          <button class="btn btn-danger btn-xs" ng-click="imageUrl = null"> <span class="glyphicon glyphicon-trash"></span> Remove</button>
+          <button class="btn btn-danger btn-xs" ng-click="removeImage(imageUrl)"> <span class="glyphicon glyphicon-trash"></span> Remove</button>
         </div>
       </div>
     </div>

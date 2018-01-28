@@ -18,15 +18,21 @@ angular.module('wrapsy', [
   'long2know' ,
   'checklist-model',
   'rzModule' ,
-  'angular-img-cropper'
+  'angular-img-cropper',
+  'angular-clipboard',
+  'uiCropper',
+  'textAngular'
   ])
-.config(function($urlRouterProvider, $locationProvider) {
+.config(function($urlRouterProvider, $locationProvider,$mdThemingProvider) {
   $urlRouterProvider
   .otherwise('/');
   $locationProvider.html5Mode(true);
+  $mdThemingProvider.theme('default')
+  .primaryPalette('cyan')
+  .accentPalette('pink')
 
 })
-.run(function($rootScope, $state, ngCart, $http) {
+.run(function($rootScope, $state, $http, $transitions) {
   $.scrollUp({
     scrollName: 'scrollUp',
     scrollText: '<i class="fa fa-angle-up"></i>',
@@ -35,14 +41,15 @@ angular.module('wrapsy', [
     animation: 'fade',
     animationInSpeed: 2000
   });
-  var url = "//freegeoip.net/json/";
-  $http.get(url).then(function(response) {
-    console.log(response.data.ip);
-    $rootScope.ip = response.data.ip;
+  $transitions.onSuccess({}, function() {
+
+    console.log("statechange success");
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
   });
-  ngCart.setTaxRate(5);
-  ngCart.setShipping(0);
-  $rootScope.ngCart = ngCart;
+  $rootScope.$on('$stateChangeSuccess', function() {
+    console.log("inside stateChangeSuccess")
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  });
   $rootScope.$state = $state;
   $rootScope._ = _;
 })

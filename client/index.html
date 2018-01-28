@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css" />
     <link rel="stylesheet" href="../bower_components/angularjs-slider/dist/rzslider.css" />
     <link rel="stylesheet" href="../bower_components/AngularJS-Toaster/toaster.css" />
+    <link rel="stylesheet" href="../bower_components/ui-cropper/compile/minified/ui-cropper.css" />
+    <link rel="stylesheet" href="../bower_components/textAngular/dist/textAngular.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -49,7 +51,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/style1.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-    <link href="https://fonts.googleapis.com/css?family=Bellefair|Playfair+Display|Slabo+27px" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bellefair|Playfair+Display|Slabo+27px|Delius+Swash+Caps|Handlee|Kavivanar|Merienda+One|Old+Standard+TT" rel="stylesheet">
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -102,6 +104,17 @@
     <script src="../bower_components/angularjs-slider/dist/rzslider.js"></script>
     <script src="../bower_components/checklist-model/checklist-model.js"></script>
     <script src="../bower_components/AngularJS-Toaster/toaster.js"></script>
+    <script src="../bower_components/angular-clipboard/angular-clipboard.js"></script>
+    <script src="../bower_components/ui-cropper/compile/minified/ui-cropper.js"></script>
+    <script src="../bower_components/rangy/rangy-core.js"></script>
+    <script src="../bower_components/rangy/rangy-classapplier.js"></script>
+    <script src="../bower_components/rangy/rangy-highlighter.js"></script>
+    <script src="../bower_components/rangy/rangy-selectionsaverestore.js"></script>
+    <script src="../bower_components/rangy/rangy-serializer.js"></script>
+    <script src="../bower_components/rangy/rangy-textrange.js"></script>
+    <script src="../bower_components/textAngular/dist/textAngular.js"></script>
+    <script src="../bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+    <script src="../bower_components/textAngular/dist/textAngularSetup.js"></script>
     <!-- endbower -->
     <script src="assets/js/vendor/jquery-1.11.3.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
@@ -137,12 +150,13 @@
 <script src="app/admin/admin.module.js"></script>
 <script src="components/auth/auth.module.js"></script>
 <script src="components/util/util.module.js"></script>
-<script src="app/manage-products/manage-products.js"></script>
+<script src="app/manage-products/manage-products.controller.js"></script>
 <script src="app/account/signup/signup.controller.js"></script>
 <script src="app/admin/admin.controller.js"></script>
 <script src="app/account/account.js"></script>
 <script src="app/admin/admin.router.js"></script>
 <script src="app/app.constant.js"></script>
+<script src="app/blog/blog.controller.js"></script>
 <script src="app/cart/cart.controller.js"></script>
 <script src="app/cart/cart.js"></script>
 <script src="app/catalogs/catalog.controller.js"></script>
@@ -166,8 +180,9 @@
 <script src="app/manage-categories/manage-categories.controller.js"></script>
 <script src="app/manage-categories/manage-categories.js"></script>
 <script src="app/manage-home/manage-home.controller.js"></script>
-<script src="app/manage-products/manage-products.controller.js"></script>
+<script src="app/manage-orders/orders.controller.js"></script>
 <script src="app/account/forgot/forgot.controller.js"></script>
+<script src="app/manage-products/manage-products.js"></script>
 <script src="app/manage-requests/manage-requests.controller.js"></script>
 <script src="app/manage-requests/manage-requests.js"></script>
 <script src="app/orders/orders.controller.js"></script>

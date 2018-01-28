@@ -16,6 +16,7 @@ angular.module('wrapsy')
       });
     else
       Order.myOrders({ id: user._id }, function(orders) {
+        console.log(orders);
         $scope.orders = orders;
         // pagination controls
         $scope.currentPage = 1;

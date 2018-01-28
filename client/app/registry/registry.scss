@@ -1,13 +1,91 @@
-.registryPage{
-background-color : #ffffff;
-background-repeat: no-repeat;
+.registryPage.theme1{
+background: url('/assets/img/theme1.png');
 background-size: cover;
-background-position: center ;
+background-position: 50%;
+background-repeat: no-repeat;
+height: 100vh;
+}
+
+.menutitle.theme1, .wedding-title.theme1, .registry-details.theme1 , #wedding-date-location.theme1 {
+color: white;
+}
+
+
+
+.registryPage.theme2{
+background: url('/assets/img/theme2.png');
+background-size: cover;
+background-position: 50%;
+background-repeat: no-repeat;
+height: 100vh;
+}
+
+.menutitle.theme2, .wedding-title.theme2, .registry-details.theme2, #wedding-date-location.theme2 {
+color: #ff3300;
+}
+
+
+
+.registryPage.theme3{
+background: url('/assets/img/theme3.jpg');
+background-size: cover;
+background-position: 50%;
+background-repeat: no-repeat;
+height: 100vh;
+}
+
+.menutitle.theme3, .wedding-title.theme3, .registry-details.theme3, #wedding-date-location.theme3 {
+color: #996633;
+}
+
+.registryPage.theme4{
+background: url('/assets/img/theme4.svg');
+background-size: cover;
+background-position: 50%;
+background-repeat: no-repeat;
+height: 100vh;
+}
+
+.menutitle.theme4, .wedding-title.theme4, .registry-details.theme4, #wedding-date-location.theme4 {
+color: #f24daf;
+}
+
+.registryPage.theme5{
+background: url('/assets/img/theme5.jpg');
+background-size: cover;
+background-position: 50%;
+background-repeat: no-repeat;
+height: 100vh;
+}
+
+.menutitle.theme5, .wedding-title.theme5, .registry-details.theme5, #wedding-date-location.theme5 {
+color: black;
 
 }
 
+.registryPage.theme6{
+background: url('/assets/img/theme6.jpg');
+background-size: cover;
+background-position: 50%;
+background-repeat: no-repeat;
+height: 100vh;
+}
+
+.menutitle.theme6, .wedding-title.theme6, .registry-details.theme6, #wedding-date-location.theme6 {
+color: #000000;
+font-family: 'Delius Swash Caps', cursive;
+}
+
+
+.menutitle{
+font-family: "Libre Baskerville";
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+}
+
 h3,h5{
-	font-family: 'Playfair Display', serif !important;
+font-family: 'Playfair Display', serif !important;
 }
 
 .registry-card{
@@ -18,7 +96,7 @@ padding: 20px;
 }
 
 .event-details{
-background: url(https://d2i86m9fn0q3i7.cloudfront.net/wedding-registry/static/media/blur-couple-bg.20bc691f.png);
+background: url('/assets/img/create-registry-background.png');
 background-size: cover;
 background-position: 50%;
 background-repeat: no-repeat;
@@ -26,40 +104,14 @@ height : 100vh;
 }
 
 
-.registryPage.theme11{
-background-image: url('https://www.weddingwire.com/wedding_websites//designs/120/header_background_image_mobile-1376671622-website_bk.svg');
-//background-image: url('/assets/img/theme1.png');
-}
 
-.registryPage.theme1{
 
-background-image: url('/assets/img/theme3.jpg');
-}
-
-.registryPage.theme2{
-background-image: url(https://static.xoedge.com/xo-guest-services/assets/guest/themes/gold_glitter-coral/background_image-05f805b2ccac5db3f553831879a5b060.jpg);
-background-color: rgb(251, 156, 143);
-}
-
-.menutitle{
-font-family: "Libre Baskerville";
-font-size: 16px;
-font-style: normal;
-font-weight: 700;
-}
 
 .menutitle.theme11{
 color: rgb(77, 77, 77);
 }
 
-.menutitle.theme1{
-color: #EF756C;
-}
 
-
-.wedding-title.theme1{
-color : #98FB98;
-}
 
 .theme1font{
 color: #4D4D4D;
@@ -131,7 +183,7 @@ margin-bottom : 40px;
 
 .registry-details{
 padding-bottom : 40px;  
-background-color : #ffffff;  
+
 }
 
 .registry-top{
@@ -191,6 +243,13 @@ margin: 0px 0 0px 0;
 padding: initial;
 height: 420px;
 }
+}
+
+.cover-photo{
+background-size: cover; 
+background-repeat: no-repeat;
+width : 100%;
+border: 10px solid whitesmoke !important;
 }
 
 .registry-hero {
@@ -377,7 +436,6 @@ background-color: white;
 }
 
 #wedding-title {
-font-family: Alex Brush !important;
 font-size: 60px !important;
 font-style: normal !important;
 margin: 6px 0 8px 0;
@@ -399,9 +457,6 @@ font-weight: normal;
 color: #000000;
 }
 
-#wedding-location {
-white-space: nowrap;
-}
 
 #wedding-countdown {
 color: #000000;
@@ -462,10 +517,11 @@ font-weight: normal;
 }
 
 .cropArea {
-background: #E4E4E4;
+border: 5px solid darkgrey;
 overflow: hidden;
-width:500px;
-height:350px;
+width:100%;
+height:400px;
+margin : 10px;
 }
 
 
@@ -484,53 +540,163 @@ margin-right: 3px;
 }
 
 .wrapper{
-  
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  
 
-  .file-upload{
-
-    height:200px;
-    width:200px;
-    border-radius: 100px;
-    position:relative;
-    
-    display:flex;
-    justify-content:center;
-    align-items: center;  
-
-    border:4px solid #FFFFFF;
-    overflow:hidden;
-    background-image: linear-gradient(to bottom, #2590EB 50%, #FFFFFF 50%);
-    background-size: 100% 200%;
-    transition: all 1s;
-    color: #FFFFFF;
-    font-size:100px;
-
-    input[type='file']{
-
-      height:200px;
-      width:200px;
-      position:absolute;
-      top:0;
-      left:0;
-      opacity:0;
-      cursor:pointer;
-
-    }
-
-    &:hover{
-
-      background-position: 0 -100%;
-
-      color:#2590EB;
-
-    }
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
 
 
-  }
+.file-upload{
+
+height:200px;
+width:200px;
+border-radius: 100px;
+position:relative;
+
+display:flex;
+justify-content:center;
+align-items: center;  
+
+border:4px solid #FFFFFF;
+overflow:hidden;
+background-image: linear-gradient(to bottom, #2590EB 50%, #FFFFFF 50%);
+background-size: 100% 200%;
+transition: all 1s;
+color: #FFFFFF;
+font-size:100px;
+
+input[type='file']{
+
+height:200px;
+width:200px;
+position:absolute;
+top:0;
+left:0;
+opacity:0;
+cursor:pointer;
+
 }
+
+&:hover{
+
+background-position: 0 -100%;
+
+color:#2590EB;
+
+}
+
+
+}
+}
+
+.dashboard-title{
+font-size : 20px;
+color : white;
+}
+
+md-card-title, md-card-content{
+padding: 10px!important;
+}
+
+
+.f-r{
+float: right;
+}
+.f-l{
+float: left;
+}
+.m-t-10{
+margin-top: 10px !important;
+}
+.m-t-20{
+margin-top: 20px !important;
+}
+.m-t-30{
+margin-top: 30px !important;
+}
+.m-t-40{
+margin-top: 40px !important;
+}
+.m-t-50{
+margin-top: 50px !important;
+}
+.m-t-60{
+margin-top: 60px !important;
+}
+.modal-content{
+border-radius: 0px; 
+}
+h1,h2{
+font-family: 'Roboto Condensed', sans-serif;
+font-weight: 400;
+}
+.button:focus{
+color: #fff;
+}
+
+.modal {
+top: 50px;
+} 
+
+.quickview2 .mc-quick{
+padding: 0px;
+position: relative;
+}
+.left-quickview{
+position: relative;
+}
+.butss{
+position: absolute;
+width: 0; 
+height: 0; 
+border-top: 20px solid transparent;
+border-bottom: 16px solid transparent; 
+border-right: 16px solid #fff; 
+top: calc(50% - 8px);
+right: 15px;
+}
+button.close{	
+position: absolute;
+z-index: 99;
+right: 20px;
+top: 20px;
+}    
+.right-quickview{
+padding: 40px 35px 20px 20px;
+}
+.regprod-tit{
+color :#000;
+}
+.short-info{
+width: 100%;
+float: left;
+margin: 5px 0px;
+font-size: 15px;
+}
+.short-info div{
+width: 100%;
+float: left;
+
+padding: 6px 0px;
+}
+.short-info div span,.short-info div small{
+width: 50%;
+float: left;
+}
+.short-info div span{
+color: #000;
+}
+.quickview2 .title-product a {
+color: #00BCD4;
+}
+.quickview2 .product-des .mc-price ins {
+color: #ff5722;
+font-weight: 600;
+font-size: 20px;
+}
+.quickview2 .available-instock span {
+color: #8BC34A;
+}
+

@@ -1,0 +1,49 @@
+
+
+<div class="container">
+	<section class="product-grid" style="min-height: 200px">
+		<div class="container">
+			<div class="row">
+
+
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+					<div class="text-center">
+						<h3>List of Blogs</h3>
+					</div>
+
+					<div class="table-responsive" ng-hide="filtered.length === 0">
+						<div class="row">
+							<div  class="col-md-6 pull-right">
+								<a href="/addBlog" class="btn btn-xs btn-success pull-right"><span class="fa fa-plus fa-2x"></span></a>
+							</div>
+
+						</div>
+
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<td>Blog Title</td>
+									<td class="text-center" colspan="3">Actions</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="post in posts" class="order-col">
+									<td><a href ="admin/viewBlog/{{post.slug}}" >{{post.title}}</a></td>
+									<td >
+										<a ng-click=deleteCourse(post._id) class="trash"><span class="fa fa-trash fa-2x">                                </span></a>
+									</td>
+									<td >
+										<a href ="admin/editBlog/{{post.slug}}" class="trash"><span class="fa fa-edit fa-2x">                                </span></a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+

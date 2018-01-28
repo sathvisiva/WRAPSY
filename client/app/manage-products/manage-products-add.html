@@ -1,7 +1,7 @@
 <md-tabs md-dynamic-height="" md-border-bottom="" md-selected="myTabIndex">
   <md-tab label="General">
     <md-content class="md-padding">
-      <form id="form1" name="form1" class="form-horizontal" ng-submit="save(form1)" novalidate>
+      <form id="form1" name="form1" class="form-horizontal" novalidate>
         <div class="form-group">
           <div class="col-sm-4 pull-left">
             <md-switch ng-model="product.affiliate" aria-label="affiliate">
@@ -77,10 +77,8 @@
         <label class="col-sm-2 control-label">Discount <span class="asterisk">*</span>
         </label>
         <div class="col-sm-3">
-          <input type="number" class="form-control" ng-model = "product.discount" required name="discount">
-          <div class="msg-block" ng-if="form1.discount.$touched && form1.discount.$error" ng-messages="form1.discount.$error" style="color:maroon; ">
-            <div ng-message="required">The Discount field is required</div>                  
-          </div>
+          <input type="number" class="form-control" ng-model = "product.discount" name="discount">
+
         </div>
       </div>
 
@@ -96,10 +94,8 @@
       <label class="col-sm-2 control-label">GST <span class="asterisk">*</span>
       </label>
       <div class="col-sm-3">
-        <input type="number" class="form-control" ng-model = "product.gst" required name="gst">
-        <div class="msg-block" ng-if="form1.gst.$touched && form1.gst.$error" ng-messages="form1.gst.$error" style="color:maroon; ">
-          <div ng-message="required">The GST field is required</div>                  
-        </div>
+        <input type="number" class="form-control" ng-model = "product.gst" name="gst">
+  
       </div>
     </div>
 
@@ -107,7 +103,7 @@
       <label class="col-sm-2 control-label">Asin <span class="asterisk">*</span>
       </label>
       <div class="col-sm-3">
-        <input type="number" class="form-control" ng-model = "product.asin" required name="asin">
+        <input type="text" class="form-control" ng-model = "product.asin" required name="asin">
         <div class="msg-block" ng-if="form1.asin.$touched && form1.asin.$error" ng-messages="form1.asin.$error" style="color:maroon; ">
           <div ng-message="required">The Asin field is required</div>                  
         </div>
@@ -115,7 +111,7 @@
       <label class="col-sm-2 control-label">Code <span class="asterisk">*</span>
       </label>
       <div class="col-sm-3">
-        <input type="number" class="form-control" ng-model = "product.code" required name="code">
+        <input type="text" class="form-control" ng-model = "product.code" required name="code">
         <div class="msg-block" ng-if="form1.code.$touched && form1.code.$error" ng-messages="form1.code.$error" style="color:maroon; ">
           <div ng-message="required">The Code field is required</div>                  
         </div>
@@ -142,7 +138,7 @@
 
         </div>
         <label class="col-sm-1 control-label">Value </label>
-        <div class="col-sm-2">
+        <div class="col-sm-3">
           <multiselect class="input-xlarge multiselect" ng-model="feature.val" options="x for x in options" select-limit="5"
           header="Select Values" selected-header="options selected" multiple="true" required
           enable-filter="true" filter-placeholder="Filter stuff..">
@@ -151,7 +147,7 @@
       </div>
       <label class="col-sm-2 control-label">Selectable </label>
       <div class="col-sm-2">
-        <md-checkbox ng-model="feature.selectable" aria-label="Checkbox 1">
+        <md-checkbox ng-model="feature.selectable" aria-label="Selectable" style = "margin-top: 5px;">
 
         </md-checkbox>
       </div>
@@ -193,77 +189,64 @@
 </md-tab>
 <md-tab label="Images">
   <md-content class="md-padding">
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Image <span class="asterisk">*</span>
-      </label>
-      <div class="col-sm-10">
-        <div class="controls upload">
-          <input type="file"  ngf-select="upload($file, $invalidFiles)" ng-model="imageUrl1" name="imageUrl1" accept="image/*" ngf-max-size="1MB" ngf-resize="{width: 444, height: 444, quality: 1, type: 'image/jpeg', centerCrop: true, restoreExif: false}" ngf-model-invalid="errorFile" />
-          <i ng-show="form.imageUrl1.$error.required">*required</i>
-          <i ng-show="form.imageUrl1.$error.maxSize">File too large  {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
-          <img ng-show="form.imageUrl1.$valid" ngf-thumbnail="imageUrl1" class="thumb">
-          <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-          <div ng-show="imageUrl1" class="remove-btn">
-            <button class="btn btn-danger btn-xs" ng-click="imageUrl1 = null"> <span class="glyphicon glyphicon-trash"></span> Remove</button>
-          </div>
-        </div>
-      </div>    
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Image <span class="asterisk">*</span>
-      </label>
-      <div class="col-sm-10">
-        <div class="controls upload">
-          <input type="file"  ngf-select="upload($file, $invalidFiles)" ng-model="imageUrl2" name="imageUrl2" accept="image/*" ngf-max-size="1MB" ngf-resize="{width: 444, height: 444, quality: 1, type: 'image/jpeg', centerCrop: true, restoreExif: false}" ngf-model-invalid="errorFile" />
-          <i ng-show="form.imageUrl2.$error.required">*required</i>
-          <i ng-show="form.imageUrl2.$error.maxSize">File too large  {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
-          <img ng-show="form.imageUrl2.$valid" ngf-thumbnail="imageUrl2" class="thumb">
-          <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-          <div ng-show="imageUrl2" class="remove-btn">
-            <button class="btn btn-danger btn-xs" ng-click="imageUrl2 = null"> <span class="glyphicon glyphicon-trash"></span> Remove</button>
-          </div>
-        </div>
-      </div>    
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Image <span class="asterisk">*</span>
-      </label>
-      <div class="col-sm-10">
-        <div class="controls upload">
-          <input type="file"  ngf-select="upload($file, $invalidFiles)" ng-model="imageUrl3" name="imageUrl3" accept="image/*" ngf-max-size="1MB" ngf-resize="{width: 444, height: 444, quality: 1, type: 'image/jpeg', centerCrop: true, restoreExif: false}" ngf-model-invalid="errorFile" />
-          <i ng-show="form.imageUrl3.$error.required">*required</i>
-          <i ng-show="form.imageUrl3.$error.maxSize">File too large  {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
-          <img ng-show="form.imageUrl3.$valid" ngf-thumbnail="imageUrl3" class="thumb">
-          <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-          <div ng-show="imageUrl3" class="remove-btn">
-            <button class="btn btn-danger btn-xs" ng-click="imageUrl3 = null"> <span class="glyphicon glyphicon-trash"></span> Remove</button>
-          </div>
-        </div>
-      </div>    
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Image <span class="asterisk">*</span>
-      </label>
-      <div class="col-sm-10">
-        <div class="controls upload">
-          <input type="file"  ngf-select="upload($file, $invalidFiles)" ng-model="imageUrl4" name="imageUrl4" accept="image/*" ngf-max-size="1MB" ngf-resize="{width: 444, height: 444, quality: 1, type: 'image/jpeg', centerCrop: true, restoreExif: false}" ngf-model-invalid="errorFile" />
-          <i ng-show="form.imageUrl4.$error.required">*required</i>
-          <i ng-show="form.imageUrl4.$error.maxSize">File too large  {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
-          <img ng-show="form.imageUrl4.$valid" ngf-thumbnail="imageUrl4" class="thumb">
-          <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-          <div ng-show="imageUrl4" class="remove-btn">
-            <button class="btn btn-danger btn-xs" ng-click="imageUrl4 = null"> <span class="glyphicon glyphicon-trash"></span> Remove</button>
-          </div>
-        </div>
-      </div>    
-    </div>
+    <div class="row">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Image <span class="asterisk">*</span>
+        </label>
+        <div class="col-sm-10">
+          <div class="controls">
+            <input type="file"  ngf-select="upload($file, $invalidFiles)" ng-model="imageUrl1" name="imageUrl1" accept="image/*" ngf-max-size="1MB" ngf-resize="{width: 444, height: 444, quality: 1, type: 'image/jpeg', centerCrop: true, restoreExif: false}" ngf-model-invalid="errorFile" />
+            <i ng-show="form.imageUrl1.$error.required">*required</i>
+            <i ng-show="form.imageUrl1.$error.maxSize">File too large  {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
 
-    <div class="col-sm-12">
-      <div class="text-center">
-        <button class="btn btn-primary" ng-click="save()"> Save Product</button>
+            <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+          </div>
+        </div> 
+
       </div>
+      <div class="col-sm-12">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="text-center"><a  class="cursorpointer"><strong>Image</strong></a> </th>
+              <th class="text-center"><a  class="cursorpointer"><strong>Cover</strong></a> </th>
+              <th class="text-center"><a class="cursorpointer"><strong>Action</strong></a></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="x in product.images" class="order-col">
+              <td class="text-center"><img ng-src="{{x.url}}" class="thumb"></td>
+              <td class="text-center">
+                <md-switch ng-model="x.cover"  aria-label="affiliate">
+                  <md-tooltip md-direction="right">slide the switch to add Image as cover Image</md-tooltip>
+                </md-switch>
+              </td>
+              <td class="text-center"> 
+                <a ng-click="deleteImage($index, x.url)" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> Remove</a>
+              </td>
+            </tr>
+          </tbody> 
+        </table>
+    <!--    <table>
+        <tr ng-repeat="img in product.images" class="order-col">
+          <td><img  ng-src="{{img.url}}" class="thumb"></td>
+          <td class="text-center">{{img.cover}}</td>
+          <td class="text-center"> 
+            <a ng-click="deleteFeature($index)" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> Remove</a>
+          </td>
+        </tr>
+      </table>   -->
     </div>
-  </md-content>
+  </div>
+
+
+
+  <div class="col-sm-12">
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary" ng-click="save(form1)"> Save Product</button>
+    </div>
+  </div>
+</md-content>
 </md-tab>
 </md-tabs>
 
